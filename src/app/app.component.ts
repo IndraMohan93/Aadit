@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform, AlertController } from 'ionic-angular';
+import { Nav, Platform, AlertController, Tab } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
@@ -33,7 +33,6 @@ import { StressTests } from '../pages/stress-tests/stress-tests';
 import { TabsPage } from '../pages/home/tabs';
 
 
-
 @Component({
   templateUrl: 'app.html',
 })
@@ -59,7 +58,12 @@ export class MyApp {
     private loginProvider: LoginProvider,
     public alertCtrl: AlertController) {
 
-
+    this.events.subscribe('login:setroottabs', () => {
+      this.nav.setRoot(TabsPage);
+    })
+    this.events.subscribe('login:setrootlogin', () => {
+      this.nav.setRoot(Login);
+    })
     this.initializeApp();
 
 

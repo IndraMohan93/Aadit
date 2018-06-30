@@ -31,6 +31,7 @@ export class LoginProvider {
     console.log("logout called")
     this.tokenService.signOut().subscribe(
       res => {
+        this.events.publish('login:setrootlogin');
         this.respUtility.showMsg("Logged out");
         this.events.publish('user:logout:success');
         this.storage.clear();
@@ -105,7 +106,7 @@ export class LoginProvider {
             console.log("Failed to save push_token to server. Notification will not work !!");
           }
         );
-
+        this.events.publish('login:setroottabs');
         loader.dismiss();
         if (navCtrl != null) {
           navCtrl.popToRoot();
