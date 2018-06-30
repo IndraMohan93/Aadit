@@ -1,0 +1,92 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Medicals</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  
+    <ion-list *ngFor="let medical of medicals" (click)=editMedicalDetails(medical)>
+
+      <ion-item-divider text-wrap color="secondary">The last time I had a medical check up was</ion-item-divider>
+      <ion-item no-lines>
+        <ion-row>
+          <ion-col text-wrap>
+            {{medical.last_medical_checkup}}
+          </ion-col>
+        </ion-row>
+      </ion-item>
+
+      <ion-item-divider text-wrap color="secondary">Basic Medical Questions</ion-item-divider>
+      <ion-item>
+        <ion-label text-wrap>I have been told I have a heart condition that requires me to take up only physical activity recommended by a doctor.</ion-label>
+        <ion-checkbox [(ngModel)]="medical.q1"></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label text-wrap>I have in the past felt a pain in my chest when I do physical activity / exercise.</ion-label>
+        <ion-checkbox [(ngModel)]="medical.q2" ></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label text-wrap>In the past month I have had chest pain when not doing any physical activity.</ion-label>
+        <ion-checkbox [(ngModel)]="medical.q3"></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label text-wrap>I have in the past lost balance because I felt dizzy, or lost consciousness.</ion-label>
+        <ion-checkbox [(ngModel)]="medical.q4" ></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label text-wrap>I have a bone or joint problem that could be made worse with physical activity.</ion-label>
+        <ion-checkbox [(ngModel)]="medical.q5"></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label text-wrap>I am taking medication for blood pressure or a heart condition.</ion-label>
+        <ion-checkbox [(ngModel)]="medical.q6" ></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label text-wrap>I am diabetic.</ion-label>
+        <ion-checkbox [(ngModel)]="medical.q7"></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label text-wrap>I sometimes have difficulty breathing - especially in cold dry conditions.</ion-label>
+        <ion-checkbox [(ngModel)]="medical.q8" ></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label text-wrap>I am aware of some other reason why I should do physical activity.</ion-label>
+        <ion-checkbox [(ngModel)]="medical.q9"></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label text-wrap>I am pregnant.</ion-label>
+        <ion-checkbox [(ngModel)]="medical.q10" ></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label text-wrap>None of the things listed above apply to me.</ion-label>
+        <ion-checkbox [(ngModel)]="medical.q11"></ion-checkbox>
+      </ion-item>
+
+
+      <ion-item-divider text-wrap color="secondary">Any specific issue / concern that you wish to highlight for consideration as you get started with the program?</ion-item-divider>
+      <ion-item no-lines>
+        <ion-row>
+          <ion-col text-wrap>
+            {{medical.specific_issue}}
+          </ion-col>
+        </ion-row>
+      </ion-item>
+
+    </ion-list>
+
+</ion-content>

@@ -1,0 +1,56 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Goals</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <ion-list inset >
+
+    <button ion-item *ngFor="let goal of goals" (click)=getGoalDetails(goal)>
+
+      <ion-item-divider text-wrap color="secondary">{{getGoalText("REASON")}}</ion-item-divider>
+      <ion-item no-lines>
+        <ion-row>
+          <ion-col text-wrap>
+            {{goal.reason}}
+          </ion-col>
+        </ion-row>
+      </ion-item>
+
+      <ion-item-divider text-wrap color="secondary">{{getGoalText("DELIGHT")}}</ion-item-divider>
+      <ion-item no-lines>
+        <ion-row>
+          <ion-col text-wrap>
+            {{goal.delight}}
+          </ion-col>
+        </ion-row>
+      </ion-item>
+
+      <ion-item-divider text-wrap color="secondary">{{getGoalText("FREQ")}}</ion-item-divider>
+      <ion-item no-lines>
+        <ion-row>
+          <ion-col text-wrap>
+            {{goal.frequency}}
+          </ion-col>
+        </ion-row>
+      </ion-item>
+
+      <ion-item-divider text-wrap color="secondary">{{getGoalText("CURRENT_ACTIVITY")}}</ion-item-divider>
+      <ion-item no-lines>
+        <ion-row>
+          <ion-col text-wrap>
+            {{goal.current_activity}}
+          </ion-col>
+        </ion-row>
+      </ion-item>
+
+    </button>
+
+  </ion-list>
+
+</ion-content>

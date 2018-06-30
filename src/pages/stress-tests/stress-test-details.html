@@ -1,0 +1,28 @@
+
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>StressTest Details</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+
+    <ion-item-divider text-wrap color="secondary">{{getStressTestText(stress_test.stress_test_name)}}</ion-item-divider>
+
+    <ion-item>
+      <ion-row>
+        <ion-col text-wrap>
+          {{stress_test.stress_test_desc}}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+
+  </ion-list>
+
+
+</ion-content>

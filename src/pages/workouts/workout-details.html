@@ -1,0 +1,104 @@
+<!--
+  Generated template for the WorkoutDetails page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Workout Details</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+
+
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          Type:
+        </ion-col>
+        <ion-col>
+          {{workout.workout_type}}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          Activity Time:
+        </ion-col>
+        <ion-col>
+          {{workout.activity_time}} mins
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          Activity Speed:
+        </ion-col>
+        <ion-col>
+          {{workout.activity_speed}} Kmh
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          Recovery Time
+        </ion-col>
+        <ion-col>
+          {{workout.recovery_time}} mins
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          Recovery Speed:
+        </ion-col>
+        <ion-col>
+          {{workout.recovery_speed}} Kmh
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          Repeats:
+        </ion-col>
+        <ion-col>
+          {{workout.repeats}}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          Total Duration:
+        </ion-col>
+        <ion-col>
+          {{workout.total_duration}} mins
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+
+
+  </ion-list>
+
+
+</ion-content>

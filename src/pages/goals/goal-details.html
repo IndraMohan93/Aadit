@@ -1,0 +1,28 @@
+
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Goal Details</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+
+    <ion-item-divider text-wrap color="secondary">{{getGoalText(goal.goal_name)}}</ion-item-divider>
+
+    <ion-item>
+      <ion-row>
+        <ion-col text-wrap>
+          {{goal.goal_desc}}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+
+  </ion-list>
+
+
+</ion-content>

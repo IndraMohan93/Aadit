@@ -1,0 +1,148 @@
+<ion-header>
+
+  <ion-navbar color="primary" *ngIf="showNavbar">
+    <ion-title>Schedule</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding #schedule_content (click)=rateSchedule(schedule)>
+
+  <ion-list inset *ngIf="schedule && schedule.workout_type">
+    <ion-item-divider class="schedule_header" text-wrap text-center [style.backgroundColor]="(schedule.workout_type != 'Strength') ? '#32db64' : '#488aff'">
+      <h2>{{schedule.scheduled_date | date}} : {{schedule.workout_type}}</h2>
+      <ion-icon name='checkbox' item-right *ngIf="schedule.completed"></ion-icon>
+      <ion-icon name='warning' item-right *ngIf="schedule.completed==false"></ion-icon>
+    </ion-item-divider>
+
+
+    <div *ngIf="schedule.exercise && schedule.workout_type != 'Strength'">
+      <ion-item>
+        <ion-row>
+          <ion-col text-wrap>
+            Activity Time:
+          </ion-col>
+          <ion-col text-wrap>
+            {{schedule.exercise.activity_time}} mins
+          </ion-col>
+          <ion-col text-wrap>
+            Activity Speed:
+          </ion-col>
+          <ion-col text-wrap>
+            {{schedule.exercise.activity_speed}} Kmh
+          </ion-col>
+        </ion-row>
+      </ion-item>
+
+      <ion-item>
+        <ion-row>
+          <ion-col text-wrap>
+            Recovery Time
+          </ion-col>
+          <ion-col text-wrap>
+            {{schedule.exercise.recovery_time}} mins
+          </ion-col>
+          <ion-col text-wrap>
+            Recovery Speed:
+          </ion-col>
+          <ion-col text-wrap>
+            {{schedule.exercise.recovery_speed}} Kmh
+          </ion-col>
+        </ion-row>
+      </ion-item>
+
+      <ion-item>
+        <ion-row>
+          <ion-col text-wrap>
+            Repeats:
+          </ion-col>
+          <ion-col text-wrap>
+            {{schedule.exercise.repeats}}
+          </ion-col>
+          <ion-col text-wrap>
+            Total Duration:
+          </ion-col>
+          <ion-col text-wrap>
+            {{schedule.exercise.total_duration}} mins
+          </ion-col>
+        </ion-row>
+      </ion-item>
+
+    </div>
+
+    <div *ngIf="schedule.workout_type == 'Strength'">
+      <ion-item>
+        <ion-row *ngIf="schedule.exercise.balance && schedule.exercise.balance > 0">
+          <ion-col text-wrap>
+            Balance:
+          </ion-col>
+          <ion-col text-wrap>
+            {{schedule.exercise.balance}} seconds
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="schedule.exercise.plank && schedule.exercise.plank > 0">
+          <ion-col text-wrap>
+            Plank:
+          </ion-col>
+          <ion-col text-wrap>
+            {{schedule.exercise.plank}} seconds
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="schedule.exercise.pushups && schedule.exercise.pushups > 0">
+          <ion-col text-wrap>
+            Push Ups:
+          </ion-col>
+          <ion-col text-wrap>
+            {{schedule.exercise.pushups}} count
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="schedule.exercise.one_leg_raise && schedule.exercise.one_leg_raise > 0">
+          <ion-col text-wrap>
+            One Leg Raise:
+          </ion-col>
+          <ion-col text-wrap>
+            {{schedule.exercise.one_leg_raise}} count
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="schedule.exercise.leg_raise_both && schedule.exercise.leg_raise_both > 0">
+          <ion-col text-wrap>
+            Leg Raise Both:
+          </ion-col>
+          <ion-col text-wrap>
+            {{schedule.exercise.leg_raise_both}} count
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="schedule.exercise.squats && schedule.exercise.squats > 0">
+          <ion-col text-wrap>
+            Squats:
+          </ion-col>
+          <ion-col text-wrap>
+            {{schedule.exercise.squats}} count
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="schedule.exercise.crunches && schedule.exercise.crunches > 0">
+          <ion-col text-wrap>
+            Crunches:
+          </ion-col>
+          <ion-col text-wrap>
+            {{schedule.exercise.crunches}} count
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="schedule.exercise.superman && schedule.exercise.superman > 0">
+          <ion-col text-wrap>
+            Superman:
+          </ion-col>
+          <ion-col text-wrap>
+            {{schedule.exercise.superman}} seconds
+          </ion-col>
+        </ion-row>
+      </ion-item>
+
+
+
+    </div>
+
+  </ion-list>
+
+
+</ion-content>

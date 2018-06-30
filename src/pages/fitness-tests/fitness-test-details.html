@@ -1,0 +1,251 @@
+<!--
+  Generated template for the FitnessTestDetails page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Fitness Test</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+
+  <ion-list inset>
+
+    <ion-item color="primary" (click)="showCardioProfile()">
+      Cardio Profile
+      <ion-icon name="heart" item-end></ion-icon>
+    </ion-item>
+    <ion-item color="primary" (click)="showWorkouts()">
+      Workouts
+      <ion-icon name="pulse" item-end></ion-icon>
+    </ion-item>
+    <ion-item color="primary" (click)="showSchedules()">
+      Schedule
+      <ion-icon name="clock" item-end></ion-icon>
+    </ion-item>
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          Date:
+        </ion-col>
+        <ion-col>
+          {{fitness_test.test_date | date}}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          Weight:
+        </ion-col>
+        <ion-col>
+          {{fitness_test.weight}} Kgs
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          Height:
+        </ion-col>
+        <ion-col>
+          {{fitness_test.height}} 
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          Fat Percentage:
+        </ion-col>
+        <ion-col>
+          {{fitness_test.fat_percentage}} %
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          Body Age:
+        </ion-col>
+        <ion-col>
+          {{fitness_test.body_age}} Years
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          BMI:
+        </ion-col>
+        <ion-col>
+          {{fitness_test.bmi}}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          RM:
+        </ion-col>
+        <ion-col>
+          {{fitness_test.rm}}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          Visc Fat:
+        </ion-col>
+        <ion-col>
+          {{fitness_test.visc_fat}}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          Skin Fat:
+        </ion-col>
+        <ion-col>
+          {{fitness_test.sc_fat}}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          Muscle Percentage:
+        </ion-col>
+        <ion-col>
+          {{fitness_test.muscle_percentage}} %
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          Fat:
+        </ion-col>
+        <ion-col>
+          {{fitness_test.fat_kg}} Kg
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          Muscle:
+        </ion-col>
+        <ion-col>
+          {{fitness_test.muscle_kg}} Kg
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          Other:
+        </ion-col>
+        <ion-col>
+          {{fitness_test.other_kg}} Kg
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          Fat Loss:
+        </ion-col>
+        <ion-col>
+          {{fitness_test.fat_loss}} Kg
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          Muscle Gain:
+        </ion-col>
+        <ion-col>
+          {{fitness_test.muscle_gain}} Kg
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          Max Speed:
+        </ion-col>
+        <ion-col>
+          {{fitness_test.max_speed}} Kmph
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          Max Heart Rate:
+        </ion-col>
+        <ion-col>
+          {{fitness_test.max_heart_rate}} Bpm
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          Duration:
+        </ion-col>
+        <ion-col>
+          {{fitness_test.duration}} Mins
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-row>
+        <ion-col text-wrap>
+          Reason for Stopping:
+        </ion-col>
+        <ion-col text-wrap>
+          {{fitness_test.reason_for_stopping}}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+
+  </ion-list>
+
+
+</ion-content>

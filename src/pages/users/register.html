@@ -1,0 +1,40 @@
+<!--
+  Generated template for the RegisterPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar  color="primary">
+    <ion-title>Register</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-list>
+
+            <button ion-item (click)="register('Runner', -1)">
+              <ion-icon name="create" item-left color="primary"></ion-icon>
+              Corporate Sponsored Runner
+              <p>
+                Register as a Runner .
+              </p>
+            </button>
+
+            <button ion-item (click)="register('Runner', null)">
+              <ion-icon name="create" item-left color="primary"></ion-icon>
+              Individual Runner
+              <p>
+                Register as an individual Runner
+              </p>
+            </button>
+
+
+
+        </ion-list>
+
+</ion-content>

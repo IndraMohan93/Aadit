@@ -1,0 +1,178 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>StressTests</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <p *ngIf="submitAttempt" style="color: #ea6153;">Please fill out all details accurately.</p>
+
+  <ion-list no-lines>
+
+    <form [formGroup]="slideOneForm">
+
+      <ion-item-divider text-center color="secondary" *ngIf="stress_test.score_interpretation">
+        Score: {{stress_test.score}}, {{stress_test.score_interpretation}}
+      </ion-item-divider>
+
+      <ion-item>
+        <ion-label text-wrap>{{getStressTestText("unexpected_upset")}}</ion-label>
+        <ion-select formControlName="unexpected_upset" [(ngModel)]="stress_test.unexpected_upset" name="unexpected_upset">
+          <ion-option value="Never">Never</ion-option>
+          <ion-option value="Almost Never">Almost Never</ion-option>
+          <ion-option value="Sometimes">Sometimes</ion-option>
+          <ion-option value="Fairly Often">Fairly Often</ion-option>
+          <ion-option value="Very Often">Very Often</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item *ngIf="!slideOneForm.controls.unexpected_upset.valid  && (slideOneForm.controls.unexpected_upset.dirty || submitAttempt)">
+        <p class="error-text">Please enter some details.</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label text-wrap>{{getStressTestText("unable_to_control")}}</ion-label>
+        <ion-select formControlName="unable_to_control" [(ngModel)]="stress_test.unable_to_control" name="unable_to_control">
+          <ion-option value="Never">Never</ion-option>
+          <ion-option value="Almost Never">Almost Never</ion-option>
+          <ion-option value="Sometimes">Sometimes</ion-option>
+          <ion-option value="Fairly Often">Fairly Often</ion-option>
+          <ion-option value="Very Often">Very Often</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item *ngIf="!slideOneForm.controls.unable_to_control.valid  && (slideOneForm.controls.unable_to_control.dirty || submitAttempt)">
+        <p class="error-text">Please enter some details.</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label text-wrap>{{getStressTestText("nervous")}}</ion-label>
+        <ion-select formControlName="nervous" [(ngModel)]="stress_test.nervous" name="nervous">
+          <ion-option value="Never">Never</ion-option>
+          <ion-option value="Almost Never">Almost Never</ion-option>
+          <ion-option value="Sometimes">Sometimes</ion-option>
+          <ion-option value="Fairly Often">Fairly Often</ion-option>
+          <ion-option value="Very Often">Very Often</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item *ngIf="!slideOneForm.controls.nervous.valid  && (slideOneForm.controls.nervous.dirty || submitAttempt)">
+        <p class="error-text">Please enter some details.</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label text-wrap>{{getStressTestText("confident")}}</ion-label>
+        <ion-select formControlName="confident" [(ngModel)]="stress_test.confident" name="confident">
+          <ion-option value="Never">Never</ion-option>
+          <ion-option value="Almost Never">Almost Never</ion-option>
+          <ion-option value="Sometimes">Sometimes</ion-option>
+          <ion-option value="Fairly Often">Fairly Often</ion-option>
+          <ion-option value="Very Often">Very Often</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item *ngIf="!slideOneForm.controls.confident.valid  && (slideOneForm.controls.confident.dirty || submitAttempt)">
+        <p class="error-text">Please enter some details.</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label text-wrap>{{getStressTestText("things_going_right")}}</ion-label>
+        <ion-select formControlName="things_going_right" [(ngModel)]="stress_test.things_going_right" name="things_going_right">
+          <ion-option value="Never">Never</ion-option>
+          <ion-option value="Almost Never">Almost Never</ion-option>
+          <ion-option value="Sometimes">Sometimes</ion-option>
+          <ion-option value="Fairly Often">Fairly Often</ion-option>
+          <ion-option value="Very Often">Very Often</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item *ngIf="!slideOneForm.controls.things_going_right.valid  && (slideOneForm.controls.things_going_right.dirty || submitAttempt)">
+        <p class="error-text">Please enter some details.</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label text-wrap>{{getStressTestText("cannot_cope")}}</ion-label>
+        <ion-select formControlName="cannot_cope" [(ngModel)]="stress_test.cannot_cope" name="cannot_cope">
+          <ion-option value="Never">Never</ion-option>
+          <ion-option value="Almost Never">Almost Never</ion-option>
+          <ion-option value="Sometimes">Sometimes</ion-option>
+          <ion-option value="Fairly Often">Fairly Often</ion-option>
+          <ion-option value="Very Often">Very Often</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item *ngIf="!slideOneForm.controls.cannot_cope.valid  && (slideOneForm.controls.cannot_cope.dirty || submitAttempt)">
+        <p class="error-text">Please enter some details.</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label text-wrap>{{getStressTestText("control_irritation")}}</ion-label>
+        <ion-select formControlName="control_irritation" [(ngModel)]="stress_test.control_irritation" name="control_irritation">
+          <ion-option value="Never">Never</ion-option>
+          <ion-option value="Almost Never">Almost Never</ion-option>
+          <ion-option value="Sometimes">Sometimes</ion-option>
+          <ion-option value="Fairly Often">Fairly Often</ion-option>
+          <ion-option value="Very Often">Very Often</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item *ngIf="!slideOneForm.controls.control_irritation.valid  && (slideOneForm.controls.control_irritation.dirty || submitAttempt)">
+        <p class="error-text">Please enter some details.</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label text-wrap>{{getStressTestText("top_of_things")}}</ion-label>
+        <ion-select formControlName="top_of_things" [(ngModel)]="stress_test.top_of_things" name="top_of_things">
+          <ion-option value="Never">Never</ion-option>
+          <ion-option value="Almost Never">Almost Never</ion-option>
+          <ion-option value="Sometimes">Sometimes</ion-option>
+          <ion-option value="Fairly Often">Fairly Often</ion-option>
+          <ion-option value="Very Often">Very Often</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item *ngIf="!slideOneForm.controls.top_of_things.valid  && (slideOneForm.controls.top_of_things.dirty || submitAttempt)">
+        <p class="error-text">Please enter some details.</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label text-wrap>{{getStressTestText("anger")}}</ion-label>
+        <ion-select formControlName="anger" [(ngModel)]="stress_test.anger" name="anger">
+          <ion-option value="Never">Never</ion-option>
+          <ion-option value="Almost Never">Almost Never</ion-option>
+          <ion-option value="Sometimes">Sometimes</ion-option>
+          <ion-option value="Fairly Often">Fairly Often</ion-option>
+          <ion-option value="Very Often">Very Often</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item *ngIf="!slideOneForm.controls.anger.valid  && (slideOneForm.controls.anger.dirty || submitAttempt)">
+        <p class="error-text">Please enter some details.</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label text-wrap>{{getStressTestText("difficulties_piling")}}</ion-label>
+        <ion-select formControlName="difficulties_piling" [(ngModel)]="stress_test.difficulties_piling" name="difficulties_piling">
+          <ion-option value="Never">Never</ion-option>
+          <ion-option value="Almost Never">Almost Never</ion-option>
+          <ion-option value="Sometimes">Sometimes</ion-option>
+          <ion-option value="Fairly Often">Fairly Often</ion-option>
+          <ion-option value="Very Often">Very Often</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item *ngIf="!slideOneForm.controls.difficulties_piling.valid  && (slideOneForm.controls.difficulties_piling.dirty || submitAttempt)">
+        <p class="error-text">Please enter some details.</p>
+      </ion-item>
+
+    </form>
+
+  </ion-list>
+
+  <button ion-button full color="primary" (click)="save()" [disabled]="slideOneForm.invalid">Save</button>
+
+</ion-content>

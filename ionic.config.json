@@ -1,0 +1,8 @@
+{
+  "name": "Aadit Life",
+  "app_id": "7a3013ca",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}

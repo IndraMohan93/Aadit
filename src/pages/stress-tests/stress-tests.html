@@ -1,0 +1,31 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>StressTests</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <ion-list inset>
+
+    <button ion-item *ngFor="let stress_test of stress_tests" (click)=getStressTestDetails(stress_test)>
+
+      Test Date: {{stress_test.created_at | date}}
+      <p> Score: {{stress_test.score}}
+      </p>
+      <p> Status: {{stress_test.score_interpretation}}
+      </p>
+
+
+    </button>
+
+  </ion-list>
+
+  <ion-fab bottom right>
+    <button ion-fab (click)="newStressTestDetails()">+</button>
+  </ion-fab>
+
+</ion-content>

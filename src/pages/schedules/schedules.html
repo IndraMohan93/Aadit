@@ -1,0 +1,151 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title *ngIf="fitness_test_id == null">Schedule For This Week</ion-title>
+    <ion-title *ngIf="fitness_test_id != null">Schedule For Test</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <ion-calendar class="calender-height" [(ngModel)]="date" (onChange)="onChange($event)" [options]="options" type="string" format="YYYY-MM-DD">
+  </ion-calendar>
+
+
+  {{schedule?.workout_type}}
+
+
+  <div *ngIf="schedule?.workout_type != 'Strength'" class="content-height">
+    <ion-grid class="add-border height-70">
+      <ion-row>
+        <ion-col col-4>
+
+        </ion-col>
+
+        <ion-col col-4>
+          <ion-icon name="speedometer"></ion-icon> Speed (kmph)
+        </ion-col>
+
+        <ion-col col-4>
+          <ion-icon name="clock"></ion-icon> Time (mins)
+        </ion-col>
+      </ion-row>
+
+
+      <ion-row>
+        <ion-col col-4>
+          <ion-icon name="bicycle"></ion-icon> Activity
+        </ion-col>
+
+        <ion-col col-4>
+          {{schedule?.exercise?.activity_speed}}
+        </ion-col>
+
+        <ion-col col-4>
+          {{schedule?.exercise?.activity_time}}
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-4>
+          <ion-icon name="man"></ion-icon> Rest
+        </ion-col>
+
+        <ion-col col-4>
+          {{schedule?.exercise?.recovery_speed}}
+        </ion-col>
+
+        <ion-col col-4>
+          {{schedule?.exercise?.recovery_time}}
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <!--   <ion-grid>
+        <ion-row>
+            <ion-col col-4>
+              <ion-icon name="repeat"></ion-icon> Repeat
+            </ion-col>
+  
+            <ion-col col-3>
+                {{schedule?.exercise?.repeats}}
+            </ion-col>
+  
+            <ion-col col-4>
+              <ion-icon name="alarm"></ion-icon> Duration
+            </ion-col>
+            <ion-col col-2>
+                {{schedule?.exercise?.total_duration}}
+            </ion-col>
+        </ion-row>
+      </ion-grid> -->
+    <ion-grid class="height-30">
+      <ion-row>
+        <ion-col ion-col-9>
+          <ion-grid>
+            <ion-row>
+              <ion-col col-8>
+                  Repeat  
+              </ion-col>
+              <ion-col col-4>
+                  {{schedule?.exercise?.repeats}}  
+              </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col col-8>
+                    Duration 
+                </ion-col>
+                <ion-col col-4>
+                    {{schedule?.exercise?.total_duration}} 
+                </ion-col>
+              </ion-row>
+          </ion-grid>
+        </ion-col>
+        <ion-col ion-col-3>
+          
+              <img src="assets/smiley.png" *ngIf="!schedule?.rating">
+              <img src="assets/neutral.png" *ngIf="schedule?.rating==0">
+              <img src="assets/sad.png" *ngIf="schedule?.rating==-1">
+              <img src="assets/home.jpg" *ngIf="!schedule?.rating==1">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div *ngIf="schedule?.workout_type == 'Strength'">
+    <!-- Add card content here! -->
+  </div>
+  <!--
+  <ion-list inset>
+
+    <button ion-item *ngFor="let schedule of schedules" (click)=rateSchedule(schedule)>
+
+      <ion-item class="schedule_header" text-wrap text-center [style.backgroundColor]="(schedule.workout_type != 'Strength') ? '#32db64' : '#488aff'">
+        <h2>{{schedule.scheduled_date | date}} : {{schedule.workout_type}}</h2>
+        <ion-icon name='checkbox' item-right *ngIf="schedule.completed"></ion-icon>
+        <ion-icon name='warning' item-right *ngIf="schedule.completed==false"></ion-icon>
+      </ion-item>
+ 
+      </div>
+
+    </button>
+
+    <div *ngIf="!schedules || schedules.length == 0">
+      <ion-card-title class="center">
+        Your workout schedule needs to be created.
+      </ion-card-title>
+      <p>
+        Please click the button below to create your workout schedule. Choose the days you want to schedule the appropriate workout
+        on.
+      </p>
+
+      <button ion-button full color="primary" (click)="createSchedule()">Create Schedule</button>
+    </div>
+
+
+  </ion-list>
+
+-->
+
+</ion-content>

@@ -1,0 +1,47 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Create a schedule for yourself</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-card-title class="center">
+    Please select the day of the week for the different kinds of runs
+  </ion-card-title>
+  <p class="center">
+    You need to leave 1 day gap between each run.
+  </p>
+
+  <ion-list no-lines>
+
+    <form>
+
+      <ion-item *ngFor="let workout of schedule">
+        <ion-label>{{workout.label}}</ion-label>
+        <ion-select [(ngModel)]="workout.day" name="{{workout.label}}">
+          <ion-option value="1">Mon</ion-option>
+          <ion-option value="2">Tue</ion-option>
+          <ion-option value="3">Wed</ion-option>
+          <ion-option value="4">Thur</ion-option>
+          <ion-option value="5">Fri</ion-option>
+          <ion-option value="6">Sat</ion-option>
+          <ion-option value="7">Sun</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <button ion-button full color="primary" (click)="save()">Save</button>
+    </form>
+
+  </ion-list>
+
+  <ion-card-title class="center">
+      Workout Details
+  </ion-card-title>
+    
+  <workouts #workouts></workouts>
+
+</ion-content>

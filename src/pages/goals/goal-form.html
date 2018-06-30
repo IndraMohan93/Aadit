@@ -1,0 +1,79 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Goals</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <p *ngIf="submitAttempt" style="color: #ea6153;">Please fill out all details accurately.</p>
+
+  <ion-list no-lines>
+
+    <form [formGroup]="slideOneForm">
+
+
+      <ion-item>
+        <ion-label text-wrap floating>{{getGoalText("REASON")}}</ion-label>
+        <ion-textarea name="reason" formControlName="reason" type="text" [(ngModel)]="goal.reason" [class.invalid]="!slideOneForm.controls.reason.valid && (slideOneForm.controls.reason.dirty || submitAttempt)"></ion-textarea>
+      </ion-item>
+
+      <ion-item *ngIf="!slideOneForm.controls.reason.valid  && (slideOneForm.controls.reason.dirty || submitAttempt)">
+        <p class="error-text">Please enter some details.</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label text-wrap floating>{{getGoalText("DELIGHT")}}</ion-label>
+        <ion-textarea name="delight" formControlName="delight" type="text" [(ngModel)]="goal.delight" [class.invalid]="!slideOneForm.controls.delight.valid && (slideOneForm.controls.delight.dirty || submitAttempt)"></ion-textarea>
+      </ion-item>
+
+      <ion-item *ngIf="!slideOneForm.controls.delight.valid  && (slideOneForm.controls.delight.dirty || submitAttempt)">
+        <p class="error-text">Please enter some details.</p>
+      </ion-item>
+
+      <ion-list radio-group formControlName="frequency" [(ngModel)]="goal.frequency">
+
+        <ion-list-header text-wrap>{{getGoalText("FREQ")}}</ion-list-header>
+
+        <ion-item>
+          <ion-label text-wrap>Not regular - less than once a week.</ion-label>
+          <ion-radio value="Not regular - less than once a week."></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label text-wrap>Somewhat regular - between one and three times a week.</ion-label>
+          <ion-radio value="Somewhat regular - between one and three times a week."></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label text-wrap>Regular - three or more times a week.</ion-label>
+          <ion-radio value="Regular - three or more times a week."></ion-radio>
+        </ion-item>
+
+      </ion-list>
+
+
+      <ion-item *ngIf="!slideOneForm.controls.frequency.valid  && (slideOneForm.controls.frequency.dirty || submitAttempt)">
+        <p class="error-text">Please enter some details.</p>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label text-wrap floating>{{getGoalText("CURRENT_ACTIVITY")}}</ion-label>
+        <ion-textarea name="current_activity" formControlName="current_activity" type="text" [(ngModel)]="goal.current_activity"
+          [class.invalid]="!slideOneForm.controls.current_activity.valid && (slideOneForm.controls.current_activity.dirty || submitAttempt)"></ion-textarea>
+      </ion-item>
+
+      <ion-item *ngIf="!slideOneForm.controls.current_activity.valid  && (slideOneForm.controls.current_activity.dirty || submitAttempt)">
+        <p class="error-text">Please enter some details.</p>
+      </ion-item>
+    </form>
+
+  </ion-list>
+
+  <button ion-button full color="primary" (click)="save()" [disabled]="slideOneForm.invalid">Save</button>
+
+</ion-content>

@@ -1,0 +1,63 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>How did it feel?</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+
+  <p *ngIf="submitAttempt" style="color: #ea6153;">Please fill out all details accurately.</p>
+
+  <ion-list no-lines>
+
+    <form [formGroup]="slideOneForm">
+
+      <ion-item-divider text-wrap text-center color="secondary" *ngIf="schedule.rating == 1">
+        Great! Good going & keep it up.
+      </ion-item-divider>
+      <ion-item-divider text-wrap text-center color="light" *ngIf="schedule.rating == 0">
+        Ok. Sure you'll do better next time.
+      </ion-item-divider>
+      <ion-item-divider text-wrap text-center color="danger" *ngIf="schedule.rating == -1">
+        Oh too bad. Tell us what happened ?
+      </ion-item-divider>
+
+      <ion-item class="center">
+        <ion-row>
+          <ion-col>
+            <img src="assets/smiley.png" (click)="setRating(1)" [style.backgroundColor]="schedule.rating == 1 ? 'green' : 'white'"/>
+          </ion-col>
+          <ion-col>
+            <img src="assets/neutral.png" (click)="setRating(0)" [style.backgroundColor]="schedule.rating == 0 ? 'yellow' : 'white'"/>
+          </ion-col>
+          <ion-col>
+            <img src="assets/sad.png" (click)="setRating(-1)" [style.backgroundColor]="schedule.rating == -1 ? 'red' : 'white'"/>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+
+      <div *ngIf="schedule.rating == -1">
+      <ion-item >
+        <ion-label text-wrap floating>Comments</ion-label>
+        <ion-textarea name="comments" formControlName="comments" type="text" [(ngModel)]="schedule.comments" [class.invalid]="!slideOneForm.controls.comments.valid && (slideOneForm.controls.comments.dirty || submitAttempt)"></ion-textarea>
+      </ion-item>
+
+      <ion-item *ngIf="!slideOneForm.controls.comments.valid  && (slideOneForm.controls.comments.dirty || submitAttempt)">
+        <p class="error-text">Please enter some details.</p>
+      </ion-item>
+
+      <button ion-button full color="primary" (click)="save()" [disabled]="slideOneForm.invalid">Save</button>
+
+      </div>
+
+    </form>
+
+  </ion-list>
+
+  <schedule-details></schedule-details>
+
+</ion-content>
