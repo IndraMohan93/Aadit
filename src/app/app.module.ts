@@ -16,7 +16,7 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/home/tabs';
 import { Login } from '../pages/login/login';
 import { PasswordReset } from '../pages/login/password-reset'
-
+import { LoginModule } from '../pages/login/login.module';
 import { IonicStorageModule } from '@ionic/storage';
 import { Angular2TokenService } from 'angular2-token';
 // Import ionic2-rating module
@@ -46,6 +46,7 @@ import { MedicalForm } from '../pages/medicals/medical-form';
 import { FoodLogs } from '../pages/food-logs/food-logs';
 import { FoodLogDetails } from '../pages/food-logs/food-log-details';
 import { FoodLogForm } from '../pages/food-logs/food-log-form';
+import { foodHistoryPage } from '../pages/food-logs/food-history';
 import { Schedules } from '../pages/schedules/schedules';
 import { ScheduleDetails } from '../pages/schedules/schedule-details';
 import { ScheduleForm } from '../pages/schedules/schedule-form';
@@ -83,6 +84,7 @@ import { GoogleAnalytics } from '@ionic-native/google-analytics';
 import { ScheduleApi } from '../providers/schedule-api';
 
 
+
 @NgModule({
   declarations: [
     MyApp,
@@ -103,6 +105,7 @@ import { ScheduleApi } from '../providers/schedule-api';
     FoodLogs,
     FoodLogDetails,
     FoodLogForm,
+    foodHistoryPage,
     StressTests,
     StressTestDetails,
     StressTestForm,
@@ -131,6 +134,7 @@ import { ScheduleApi } from '../providers/schedule-api';
     MomentModule,
     CalendarModule,
     Ionic2RatingModule,
+    LoginModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot()
   ],
@@ -153,6 +157,7 @@ import { ScheduleApi } from '../providers/schedule-api';
     FoodLogs,
     FoodLogDetails,
     FoodLogForm,
+    foodHistoryPage,
     Goals,
     GoalDetails,
     GoalForm,

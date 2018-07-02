@@ -1,68 +1,71 @@
 <ion-header>
-
   <ion-navbar color="primary">
     <ion-title *ngIf="fitness_test_id == null">Schedule For This Week</ion-title>
     <ion-title *ngIf="fitness_test_id != null">Schedule For Test</ion-title>
   </ion-navbar>
-
 </ion-header>
-
 
 <ion-content>
 
-  <ion-calendar class="calender-height" [(ngModel)]="date" (onChange)="onChange($event)" [options]="options" type="string" format="YYYY-MM-DD">
+  <ion-calendar class="calender-height" [(ngModel)]="date" (onChange)="onChange($event)" [options]="options" type="string"
+    format="YYYY-MM-DD">
   </ion-calendar>
 
 
-  {{schedule?.workout_type}}
+  <div *ngIf="!checkStatus">
+    <br/>
+    <br/>
+    <h5>Not Scheduled</h5>
+  </div>
+
+  <div *ngIf="checkStatus">
+    {{schedule?.workout_type}}
+    <div *ngIf="schedule?.workout_type != 'Strength'" class="content-height">
+      <ion-grid class="add-border height-70">
+        <ion-row>
+          <ion-col col-4>
+
+          </ion-col>
+
+          <ion-col col-4>
+            <ion-icon name="speedometer"></ion-icon> Speed (kmph)
+          </ion-col>
+
+          <ion-col col-4>
+            <ion-icon name="clock"></ion-icon> Time (mins)
+          </ion-col>
+        </ion-row>
 
 
-  <div *ngIf="schedule?.workout_type != 'Strength'" class="content-height">
-    <ion-grid class="add-border height-70">
-      <ion-row>
-        <ion-col col-4>
+        <ion-row>
+          <ion-col col-4>
+            <ion-icon name="bicycle"></ion-icon> Activity
+          </ion-col>
 
-        </ion-col>
+          <ion-col col-4>
+            {{schedule?.exercise?.activity_speed}}
+          </ion-col>
 
-        <ion-col col-4>
-          <ion-icon name="speedometer"></ion-icon> Speed (kmph)
-        </ion-col>
+          <ion-col col-4>
+            {{schedule?.exercise?.activity_time}}
+          </ion-col>
+        </ion-row>
 
-        <ion-col col-4>
-          <ion-icon name="clock"></ion-icon> Time (mins)
-        </ion-col>
-      </ion-row>
+        <ion-row>
+          <ion-col col-4>
+            <ion-icon name="man"></ion-icon> Rest
+          </ion-col>
 
+          <ion-col col-4>
+            {{schedule?.exercise?.recovery_speed}}
+          </ion-col>
 
-      <ion-row>
-        <ion-col col-4>
-          <ion-icon name="bicycle"></ion-icon> Activity
-        </ion-col>
-
-        <ion-col col-4>
-          {{schedule?.exercise?.activity_speed}}
-        </ion-col>
-
-        <ion-col col-4>
-          {{schedule?.exercise?.activity_time}}
-        </ion-col>
-      </ion-row>
-
-      <ion-row>
-        <ion-col col-4>
-          <ion-icon name="man"></ion-icon> Rest
-        </ion-col>
-
-        <ion-col col-4>
-          {{schedule?.exercise?.recovery_speed}}
-        </ion-col>
-
-        <ion-col col-4>
-          {{schedule?.exercise?.recovery_time}}
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-    <!--   <ion-grid>
+          <ion-col col-4>
+            {{schedule?.exercise?.recovery_time}}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <!--   <ion-grid>
         <ion-row>
             <ion-col col-4>
               <ion-icon name="repeat"></ion-icon> Repeat
@@ -80,42 +83,108 @@
             </ion-col>
         </ion-row>
       </ion-grid> -->
-    <ion-grid class="height-30">
-      <ion-row>
-        <ion-col ion-col-9>
-          <ion-grid>
-            <ion-row>
-              <ion-col col-8>
-                  Repeat  
-              </ion-col>
-              <ion-col col-4>
-                  {{schedule?.exercise?.repeats}}  
-              </ion-col>
-            </ion-row>
-            <ion-row>
+      <ion-grid class="height-30">
+        <ion-row>
+          <ion-col ion-col-9>
+            <ion-grid>
+              <ion-row>
                 <ion-col col-8>
-                    Duration 
+                  Repeat
                 </ion-col>
                 <ion-col col-4>
-                    {{schedule?.exercise?.total_duration}} 
+                  {{schedule?.exercise?.repeats}}
                 </ion-col>
               </ion-row>
-          </ion-grid>
-        </ion-col>
-        <ion-col ion-col-3>
-          
-              <img src="assets/smiley.png" *ngIf="!schedule?.rating">
-              <img src="assets/neutral.png" *ngIf="schedule?.rating==0">
-              <img src="assets/sad.png" *ngIf="schedule?.rating==-1">
-              <img src="assets/home.jpg" *ngIf="!schedule?.rating==1">
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+              <ion-row>
+                <ion-col col-8>
+                  Duration
+                </ion-col>
+                <ion-col col-4>
+                  {{schedule?.exercise?.total_duration}}
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-col>
+          <ion-col ion-col-3>
+            <span *ngIf="!schedule?.rating" style="max-width: 20%;">No Rating</span>
+            <img src="assets/smiley.png" *ngIf="schedule?.rating==0" style="max-width: 20%;">
+            <img src="assets/neutral.png" *ngIf="schedule?.rating==1" style="max-width: 20%;">
+            <img src="assets/sad.png" *ngIf="schedule?.rating==-1" style="max-width: 20%;">
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <div *ngIf="schedule?.workout_type == 'Strength'">
+      <!-- Add card content here! -->
+      <ion-grid class="add-border height-70">
+        <ion-row>
+          <ion-col col-4>
+            Balance : {{schedule?.exercise?.balance}}
+          </ion-col>
+          <ion-col col-4>
+            Crunches: {{schedule?.exercise?.crunches}}
+          </ion-col>
+          <ion-col col-4>
+            Leg Raise: {{schedule?.exercise?.leg_raise_both}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-4>
+            One Leg Raise: {{schedule?.exercise?.one_leg_raise}}
+          </ion-col>
+
+          <ion-col col-4>
+            Plank :{{schedule?.exercise?.plank}}
+          </ion-col>
+
+          <ion-col col-4>
+            Push Ups: {{schedule?.exercise?.pushups}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-4>
+            Squats: {{schedule?.exercise?.sqauts}}
+          </ion-col>
+          <ion-col col-4>
+            Superman:{{schedule?.exercise?.superman}}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid class="height-30">
+        <ion-row>
+          <ion-col ion-col-9>
+            <ion-grid>
+              <ion-row>
+                <ion-col col-8>
+                  Repeat
+                </ion-col>
+                <ion-col col-4>
+                  {{schedule?.exercise?.repeats}}
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-8>
+                  Duration
+                </ion-col>
+                <ion-col col-4>
+                  {{schedule?.exercise?.total_duration}}
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-col>
+          <ion-col ion-col-3>
+            <span *ngIf="!schedule?.rating" style="max-width: 20%;">No Rating</span>
+            <img src="assets/smiley.png" *ngIf="schedule?.rating==0" style="max-width: 20%;">
+            <img src="assets/neutral.png" *ngIf="schedule?.rating==1" style="max-width: 20%;">
+            <img src="assets/sad.png" *ngIf="schedule?.rating==-1" style="max-width: 20%;">
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
   </div>
 
-  <div *ngIf="schedule?.workout_type == 'Strength'">
-    <!-- Add card content here! -->
-  </div>
+
   <!--
   <ion-list inset>
 

@@ -3,11 +3,13 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 import { ResponseUtility } from '../../providers/response-utility';
 import { FoodLogForm } from './food-log-form';
 import { FoodLogApi } from '../../providers/food-log-api';
+import { foodHistoryPage } from './food-history';
 import moment from 'moment';
 
 @Component({
   selector: 'food-logs',
-  templateUrl: 'food-logs.html',
+  templateUrl: 'food-logs.html'
+  // styleUrls: ['food-logs.css']
 })
 export class FoodLogs {
 
@@ -15,7 +17,7 @@ export class FoodLogs {
   food_log: any;
   current_day = 0;
   current_date = moment();
-
+  foodHistory: boolean;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public loadingController: LoadingController,
     public food_logApi: FoodLogApi,
@@ -24,16 +26,17 @@ export class FoodLogs {
 
   ionViewWillEnter() {
     console.log('ionViewWillEnter FoodLogs');
-    this.getFoodLogs(0);  
+    this.getFoodLogs(0);
   }
 
   getFoodLogs(day) {
+
     this.current_day = this.current_day + day;
-    
-    if(this.current_day >= 0) {
-      this.current_date = moment().add(this.current_day, 'days'); 
+
+    if (this.current_day >= 0) {
+      this.current_date = moment().add(this.current_day, 'days');
     } else {
-      this.current_date = moment().subtract(this.current_day * -1, 'days'); 
+      this.current_date = moment().subtract(this.current_day * -1, 'days');
     }
 
     console.log("current_date = ", this.current_date, this.current_day);
@@ -63,7 +66,7 @@ export class FoodLogs {
 
   newFoodLog() {
     this.respUtility.trackEvent("FoodLog", "Form", "click");
-    this.navCtrl.push(FoodLogForm, {intake_date: moment().format('YYYY-MM-DDTHH:mm')});
+    this.navCtrl.push(FoodLogForm, { intake_date: moment().format('YYYY-MM-DDTHH:mm') });
   }
 
 }

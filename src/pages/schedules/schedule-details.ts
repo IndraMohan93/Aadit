@@ -10,7 +10,7 @@ import { ScheduleForm } from './schedule-form';
   selector: 'schedule-details',
   templateUrl: 'schedule-details.html',
 })
-export class ScheduleDetails  {
+export class ScheduleDetails {
 
   @ViewChild("schedule_content") content: Content;
   public showNavbar: boolean = false;
@@ -24,7 +24,6 @@ export class ScheduleDetails  {
     public toastController: ToastController,
     public loadingController: LoadingController,
     public respUtility: ResponseUtility) {
-
     this.schedule = this.navParams.data;
 
   }
@@ -86,7 +85,7 @@ export class ScheduleDetails  {
     this.respUtility.trackEvent("Schedule", "Form", "click");
     this.navCtrl.push(ScheduleForm, schedule);
   }
-  
+
   public hideNavbar(): void {
     this.showNavbar = false;
     // You should resize the content to use the space left by the navbar

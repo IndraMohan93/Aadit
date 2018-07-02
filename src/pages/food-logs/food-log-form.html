@@ -14,31 +14,41 @@
   <ion-list no-lines>
 
     <form [formGroup]="slideOneForm">
+      <ion-list>
+        <ion-item>
+          <ion-label floating>Menu</ion-label>
+          <ion-select [(ngModel)]="food_log.meal" name="meal" formControlName="meal">
+            <ion-option value="Idli">Idli</ion-option>
+            <ion-option value="Dosa">Dosa</ion-option>
+            <ion-option value="Egg">Egg</ion-option>
+            <ion-option value="Milk">Milk</ion-option>
+          </ion-select>
+        </ion-item>
+        <!-- <ion-item *ngSwitchCase="'Lunch'">
+          <ion-label floating>Menu</ion-label>
+          <ion-select [(ngModel)]="food_log.meal" name="meal" formControlName="meal">
+            <ion-option value="Idli">North Indian meals</ion-option>
+            <ion-option value="Dosa">Dosa</ion-option>
+            <ion-option value="Egg">Egg</ion-option>
+            <ion-option value="Milk">Milk</ion-option>
+          </ion-select>
+        </ion-item> -->
 
-      <ion-item>
-        <ion-label floating>Meal</ion-label>
-        <ion-select [(ngModel)]="food_log.meal" name="meal" formControlName="meal">
-          <ion-option value="Breakfast">Breakfast</ion-option>
-          <ion-option value="Lunch">Lunch</ion-option>
-          <ion-option value="Dinner">Dinner</ion-option>
-          <ion-option value="Snack">Snack</ion-option>
-        </ion-select>
-      </ion-item>
+        <ion-item>
+          <ion-label floating>Date</ion-label>
+          <ion-datetime name="intake_date" formControlName="intake_date" displayFormat="DD/MM/YYYY HH:mm" [(ngModel)]="food_log.intake_date"></ion-datetime>
+        </ion-item>
 
-      <ion-item>
-        <ion-label floating>Date</ion-label>
-        <ion-datetime name="intake_date" formControlName="intake_date" displayFormat="DD/MM/YYYY HH:mm" [(ngModel)]="food_log.intake_date"></ion-datetime>
-      </ion-item>
-      
-      <ion-item>
-        <ion-label text-wrap floating>What did you eat?</ion-label>
-        <ion-textarea name="details" formControlName="details" type="text" [(ngModel)]="food_log.details" [class.invalid]="!slideOneForm.controls.details.valid && (slideOneForm.controls.details.dirty || submitAttempt)"></ion-textarea>
-      </ion-item>
+        <ion-item>
+          <ion-label text-wrap floating>How was it?</ion-label>
+          <ion-textarea name="details" formControlName="details" type="text" [(ngModel)]="food_log.details" [class.invalid]="!slideOneForm.controls.details.valid && (slideOneForm.controls.details.dirty || submitAttempt)"></ion-textarea>
+        </ion-item>
 
 
-      <ion-item *ngIf="!slideOneForm.controls.details.valid  && (slideOneForm.controls.details.dirty || submitAttempt)">
-        <p class="error-text">Please enter some details.</p>
-      </ion-item>
+        <ion-item *ngIf="!slideOneForm.controls.details.valid  && (slideOneForm.controls.details.dirty || submitAttempt)">
+          <p class="error-text">Please enter some details.</p>
+        </ion-item>
+      </ion-list>
 
     </form>
 

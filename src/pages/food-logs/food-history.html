@@ -1,0 +1,17 @@
+<button ion-item *ngFor="let food_log of food_logs" (click)=getFoodLogDetails(food_log)>
+
+    <ion-item-divider text-wrap color="secondary">{{food_log.meal}}</ion-item-divider>
+    <ion-item no-lines>
+        <ion-row>
+            <ion-col text-wrap>
+                {{food_log.intake_date | date: "dd/MM/yy HH:mm"}}
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col text-wrap>
+                {{food_log.details}}
+            </ion-col>
+        </ion-row>
+    </ion-item>
+
+</button>

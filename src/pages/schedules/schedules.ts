@@ -6,6 +6,7 @@ import { ScheduleApi } from '../../providers/schedule-api';
 import { ScheduleDetails } from './schedule-details';
 import { ScheduleCreate } from './schedule-create.';
 import { ModalController } from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
 
 import {
   CalendarComponentOptions
@@ -20,22 +21,24 @@ export class Schedules {
   schedules: any;
   schedule: any;
   fitness_test_id: any = null;
+  Data: any;
   date: string = new Date().toISOString();
   options: CalendarComponentOptions;
-
+  checkStatus: boolean;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public loadingController: LoadingController,
     public scheduleApi: ScheduleApi,
     public respUtility: ResponseUtility,
-    public modalCtrl: ModalController) {
+    public modalCtrl: ModalController, private alertCtrl: AlertController) {
 
-      if(this.navParams.data["fitness_test_id"] !== null) {
-        this.fitness_test_id = this.navParams.data["fitness_test_id"];
-      }
+    if (this.navParams.data["fitness_test_id"] !== null) {
+      this.fitness_test_id = this.navParams.data["fitness_test_id"];
+    }
 
   }
 
   ionViewWillEnter() {
+    this.checkStatus = true;
     console.log('ionViewWillEnter Schedules');
     this.respUtility.trackView("Schedules");
     let loader = this.loadingController.create({
@@ -47,12 +50,12 @@ export class Schedules {
     this.scheduleApi.getSchedules(this.fitness_test_id).subscribe(
       schedules => {
         this.schedules = schedules;
-        if(!!this.schedules) {
+        if (!!this.schedules) {
           console.log(this.schedules)
           this.options = {
             from: new Date(!!this.schedules[0]["scheduled_date"] ? this.schedules[0].scheduled_date : this.date)
           }
-        this.schedule = this.schedules[1]
+          this.schedule = this.schedules[1]
         }
         console.log("Loaded schedules");
         console.log(schedules);
@@ -63,7 +66,25 @@ export class Schedules {
   }
 
   onChange($event) {
-    console.log($event)
+    // console.log("this.schedules", this.schedules[6]);
+    // console.log("$event", $event);
+    this.checkStatus = true;
+    this.schedules.filter((schedule) => {
+      if ($event == schedule.scheduled_date) {
+        console.log("matched", schedule);
+        this.schedule = schedule;
+      }
+    });
+
+    if ($event > this.schedules[6].scheduled_date) {
+      this.checkStatus = false;
+      // let alert = this.alertCtrl.create({
+      //   title: 'Not Scheduled',
+      //   buttons: ['Dismiss']
+      // });
+      // alert.present();
+    }
+
   }
 
   rateSchedule(schedule) {

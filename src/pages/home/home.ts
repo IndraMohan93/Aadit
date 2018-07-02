@@ -25,7 +25,7 @@ export class HomePage implements Menu {
 
   currentUser: any;
   registerCareHome = false;
-  
+  message: any;
 
   constructor(public navCtrl: NavController,
     public respUtility: ResponseUtility,
@@ -36,14 +36,24 @@ export class HomePage implements Menu {
     private loginProvider: LoginProvider) {
 
     this.homeEvents.registerMenu(this);
-    this.events.subscribe('user:login:success', () => {
-      this.currentUser = tokenService.currentUserData;
-      // Ensure that the scheduleDetails available are shown
-      if(this.scheduleDetails) {
-        this.scheduleDetails.loadTodaysSchedule();
-        this.scheduleDetails.hideNavbar();
-      }
-    });
+    console.log("this.user", tokenService.currentUserData);
+    this.currentUser = tokenService.currentUserData;
+    console.log("this.user", this.scheduleDetails);
+    // this.events.subscribe('user:login:success', () => {
+    //   console.log("this.user", tokenService.currentUserData);
+    //   this.currentUser = tokenService.currentUserData;
+    //   console.log("this.user", this.currentUser);
+    //   console.log("this.user", this.scheduleDetails);
+    //   // Ensure that the scheduleDetails available are shown
+    //   if (this.scheduleDetails) {
+
+    //     this.scheduleDetails.loadTodaysSchedule();
+    //     this.scheduleDetails.hideNavbar();
+    //   }
+    //   else {
+    //     this.message = "No schedule for today";
+    //   }
+    // });
   }
 
   displayMsgs() {
@@ -52,7 +62,7 @@ export class HomePage implements Menu {
 
   ionViewWillEnter() {
     console.log('ionViewWillEnter HomePage ');
-    if(this.currentUser && this.scheduleDetails) {
+    if (this.currentUser && this.scheduleDetails) {
       // Ensure that the scheduleDetails available are shown
       this.scheduleDetails.loadTodaysSchedule();
       this.scheduleDetails.hideNavbar();
@@ -61,9 +71,9 @@ export class HomePage implements Menu {
   }
 
 
-  login() {
-    this.navCtrl.push(Login);
-  }
+  // login() {
+  //   this.navCtrl.push(Login);
+  // }
 
 
   logout() {
@@ -71,20 +81,20 @@ export class HomePage implements Menu {
     this.loginProvider.logout();
   }
 
-  register() {
-    this.navCtrl.push(RegisterPage);
-  }
+  // register() {
+  //   this.navCtrl.push(RegisterPage);
+  // }
 
-  contact() {
-    this.navCtrl.push(ContactPage);
-  }
+  // contact() {
+  //   this.navCtrl.push(ContactPage);
+  // }
 
-  setupGoals() {
-    this.navCtrl.push(GoalForm, {})
-  }
+  // setupGoals() {
+  //   this.navCtrl.push(GoalForm, {})
+  // }
 
-  setupFitnessTest() {
-    this.navCtrl.push(GoalForm, {})
-  }
+  // setupFitnessTest() {
+  //   this.navCtrl.push(GoalForm, {})
+  // }
 
 }

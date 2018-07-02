@@ -8,48 +8,16 @@
 </ion-header>
 
 <ion-content>
-  <ion-card *ngIf="!currentUser">
-    <img src="assets/home.jpg" />
-    <ion-card-content>
-      <ion-card-title class="center">
-        Please Login or Register
-      </ion-card-title>
-      <p text-center>
-        The most popular way to train for a run
-      </p>
-    </ion-card-content>
-
-    <ion-row no-padding>
-      <ion-col>
-        <button ion-button clear small color="primary" icon-left (click)="login()">
-          <ion-icon name='key'></ion-icon>
-          Login
-        </button>
-      </ion-col>
-      <ion-col text-center>
-        <button ion-button clear small color="secondary" icon-left (click)="register()">
-          <ion-icon name='create'></ion-icon>
-          Register
-        </button>
-      </ion-col>
-      <ion-col text-right>
-        <button ion-button clear small color="danger" icon-left (click)="contact()">
-          <ion-icon name='call'></ion-icon>
-          Contact
-        </button>
-      </ion-col>
-    </ion-row>
-  </ion-card>
-
-  <div class="home-page">
+  <!-- <div class="home-page">
     <ion-card *ngIf="currentUser">
-      <img class="home_image" src="assets/home.jpg" />
       <div class="card-title">Welcome</div>
       <div class="card-subtitle">{{currentUser.first_name}} {{currentUser.last_name}}</div>
     </ion-card>
-  </div>
-
-  <ion-card class="home_schedule">
+  </div> -->
+  <ion-card style="height: 620px">
+    <!-- <ion-item class="card-title">Welcome</ion-item>
+    <ion-item class="card-subtitle">{{currentUser.first_name}} {{currentUser.last_name}}</ion-item> -->
+    <h2 style="padding-left: 83px;padding-top: 40px;color: indianred">Welcome {{currentUser.first_name}} {{currentUser.last_name}}</h2>
     <schedule-details #scheduleDetails>Todays Schedule</schedule-details>
   </ion-card>
 
