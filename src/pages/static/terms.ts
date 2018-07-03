@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { HomePage } from '../home/home';
+import { AlertController } from 'ionic-angular';
 
 @Component({
   selector: 'page-terms',
@@ -8,15 +9,32 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class TermsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  saveAgreement: boolean;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController) {
   }
 
   ionViewDidLoad() {
+    this.saveAgreement = false;
     console.log('ionViewDidLoad TermsPage');
   }
 
-  saveAggrement(){
+  saveAggrement() {
+    this.saveAgreement = true;
     console.log('saved agreement');
+  }
+
+  onSubmit() {
+    if (this.saveAgreement) {
+      this.navCtrl.popToRoot();
+    } else {
+      let alert = this.alertCtrl.create({
+        title: 'Please select check box to agree terms and conditions',
+        buttons: ['Dismiss']
+      });
+      alert.present();
+    }
+
   }
 
 }

@@ -27,28 +27,30 @@
 
           </ion-col>
 
-          <ion-col col-4>
-            <ion-icon name="speedometer"></ion-icon> Speed (kmph)
-          </ion-col>
+
 
           <ion-col col-4>
             <ion-icon name="clock"></ion-icon> Time (mins)
+          </ion-col>
+          <ion-col col-4>
+            <ion-icon name="speedometer"></ion-icon> Speed (kmph)
           </ion-col>
         </ion-row>
 
 
         <ion-row>
           <ion-col col-4>
-            <ion-icon name="bicycle"></ion-icon> Activity
-          </ion-col>
-
-          <ion-col col-4>
-            {{schedule?.exercise?.activity_speed}}
+            <ion-icon name="walk"></ion-icon> Activity
           </ion-col>
 
           <ion-col col-4>
             {{schedule?.exercise?.activity_time}}
           </ion-col>
+          <ion-col col-4>
+            {{schedule?.exercise?.activity_speed}}
+          </ion-col>
+
+
         </ion-row>
 
         <ion-row>
@@ -56,12 +58,13 @@
             <ion-icon name="man"></ion-icon> Rest
           </ion-col>
 
-          <ion-col col-4>
-            {{schedule?.exercise?.recovery_speed}}
-          </ion-col>
+
 
           <ion-col col-4>
             {{schedule?.exercise?.recovery_time}}
+          </ion-col>
+          <ion-col col-4>
+            {{schedule?.exercise?.recovery_speed}}
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -107,8 +110,8 @@
           </ion-col>
           <ion-col ion-col-3>
             <span *ngIf="!schedule?.rating" style="max-width: 20%;">No Rating</span>
-            <img src="assets/smiley.png" *ngIf="schedule?.rating==0" style="max-width: 20%;">
-            <img src="assets/neutral.png" *ngIf="schedule?.rating==1" style="max-width: 20%;">
+            <img src="assets/smiley.png" *ngIf="schedule?.rating==1" style="max-width: 20%;">
+            <img src="assets/neutral.png" *ngIf="schedule?.rating==0" style="max-width: 20%;">
             <img src="assets/sad.png" *ngIf="schedule?.rating==-1" style="max-width: 20%;">
           </ion-col>
         </ion-row>
@@ -175,8 +178,8 @@
           </ion-col>
           <ion-col ion-col-3>
             <span *ngIf="!schedule?.rating" style="max-width: 20%;">No Rating</span>
-            <img src="assets/smiley.png" *ngIf="schedule?.rating==0" style="max-width: 20%;">
-            <img src="assets/neutral.png" *ngIf="schedule?.rating==1" style="max-width: 20%;">
+            <img src="assets/smiley.png" *ngIf="schedule?.rating==1" style="max-width: 20%;">
+            <img src="assets/neutral.png" *ngIf="schedule?.rating==0" style="max-width: 20%;">
             <img src="assets/sad.png" *ngIf="schedule?.rating==-1" style="max-width: 20%;">
           </ion-col>
         </ion-row>

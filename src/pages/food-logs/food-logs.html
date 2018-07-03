@@ -41,11 +41,14 @@
   <br/>
   <button ion-button color="secondary" round (click)="getFoodLogs(1)" style="width: 300px;margin-left: 38px">Next Day Food History</button>
 
-  <!-- <ion-list *ngIf="foodHistory">
+  <ion-list *ngIf="foodHistory">
     <ion-item *ngFor="let food_log of food_logs">
-      {{food_log.meal}} | {{food_log.details}}
+      {{food_log.meal}} - {{food_log.details}}
     </ion-item>
-  </ion-list> -->
+  </ion-list>
+  <ion-list *ngIf="!foodHistory">
+    Food History is not available for the requested day
+  </ion-list>
   <!-- <button ion-item *ngFor="let food_log of food_logs" (click)=getFoodLogDetails(food_log)>
 
     <ion-item-divider text-wrap color="secondary">{{food_log.meal}}</ion-item-divider>

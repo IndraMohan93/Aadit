@@ -25,6 +25,7 @@ export class FoodLogs {
   }
 
   ionViewWillEnter() {
+    this.foodHistory = false;
     console.log('ionViewWillEnter FoodLogs');
     this.getFoodLogs(0);
   }
@@ -33,6 +34,7 @@ export class FoodLogs {
 
     this.current_day = this.current_day + day;
 
+    this.foodHistory = true;
     if (this.current_day >= 0) {
       this.current_date = moment().add(this.current_day, 'days');
     } else {
@@ -51,6 +53,8 @@ export class FoodLogs {
     this.food_logApi.getFoodLogs(this.current_day).subscribe(
       food_logs => {
         this.food_logs = food_logs;
+        //this.respUtility.trackEvent("FoodHistory", "Form", "click");
+        // this.navCtrl.push(foodHistoryPage, food_logs);
         console.log("Loaded food_logs");
         console.log(food_logs);
       },

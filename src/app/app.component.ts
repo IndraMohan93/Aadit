@@ -14,13 +14,13 @@ import { ResponseUtility } from '../providers/response-utility';
 import { UserTabs } from '../pages/users/user-tabs';
 import { UserForm } from '../pages/users/user-form';
 import { RegisterPage } from '../pages/users/register';
-import {FitnessTests} from '../pages/fitness-tests/fitness-tests'
-import {Workouts} from '../pages/workouts/workouts';
-import {FoodLogs} from '../pages/food-logs/food-logs';
-import {Schedules} from '../pages/schedules/schedules';
-import {Goals} from '../pages/goals/goals';
-import {GoalForm} from '../pages/goals/goal-form';
-import {MedicalForm} from '../pages/medicals/medical-form';
+import { FitnessTests } from '../pages/fitness-tests/fitness-tests'
+import { Workouts } from '../pages/workouts/workouts';
+import { FoodLogs } from '../pages/food-logs/food-logs';
+import { Schedules } from '../pages/schedules/schedules';
+import { Goals } from '../pages/goals/goals';
+import { GoalForm } from '../pages/goals/goal-form';
+import { MedicalForm } from '../pages/medicals/medical-form';
 import { Login } from '../pages/login/login';
 import { AboutPage } from '../pages/static/about';
 import { HelpPage } from '../pages/static/help';
@@ -187,34 +187,34 @@ export class MyApp {
 
           this.ga.setUserId(this.currentUser["id"]); // Set the user ID using signed-in user_id.
 
-            if(this.currentUser.initial_test_completed == true) {
-              this.pages = [
-                { title: 'Goals', component: Goals, params: {} },
-                { title: 'Medicals', component: MedicalForm, params: {load_from_server:true} },
-                { title: 'Tests', component: FitnessTests, params: {} },
-                { title: 'Workouts', component: Workouts, params: {} },
-                { title: 'Schedules', component: Schedules, params: {} },
-                { title: 'Stress Tests', component: StressTests, params: {} },
-                { title: 'Food Logs', component: FoodLogs, params: {} },
-                { title: 'About Us', component: AboutPage, params: {} },
-                { title: 'Terms & Conditions', component: TermsPage, params: {} },
-                { title: 'Contact Us', component: ContactPage, params: {} },
-                { title: 'Help', component: HelpPage, params: {} },
-              ];
-  
-            } else {
-              this.pages = [
-                { title: 'Goals', component: Goals, params: {} },
-                { title: 'Medicals', component: MedicalForm, params: {load_from_server:true} },
-                { title: 'Tests', component: FitnessTests, params: {} },
-                { title: 'About Us', component: AboutPage, params: {} },
-                { title: 'Terms & Conditions', component: TermsPage, params: {} },
-                { title: 'Contact Us', component: ContactPage, params: {} },
-                { title: 'Help', component: HelpPage, params: {} },
-              ];
-  
-            }
-            
+          if (this.currentUser.initial_test_completed == true) {
+            this.pages = [
+              { title: 'Goals', component: Goals, params: {} },
+              { title: 'Medicals', component: MedicalForm, params: { load_from_server: true } },
+              { title: 'Tests', component: FitnessTests, params: {} },
+              { title: 'Workouts', component: Workouts, params: {} },
+              // { title: 'Schedules', component: Schedules, params: {} },
+              { title: 'Stress Tests', component: StressTests, params: {} },
+              { title: 'Food Logs', component: FoodLogs, params: {} },
+              // { title: 'About Us', component: AboutPage, params: {} },
+              { title: 'Terms & Conditions', component: TermsPage, params: {} },
+              { title: 'Contact Us', component: ContactPage, params: {} },
+              // { title: 'Help', component: HelpPage, params: {} },
+            ];
+
+          } else {
+            this.pages = [
+              { title: 'Goals', component: Goals, params: {} },
+              { title: 'Medicals', component: MedicalForm, params: { load_from_server: true } },
+              { title: 'Tests', component: FitnessTests, params: {} },
+              // { title: 'About Us', component: AboutPage, params: {} },
+              { title: 'Terms & Conditions', component: TermsPage, params: {} },
+              { title: 'Contact Us', component: ContactPage, params: {} },
+              // { title: 'Help', component: HelpPage, params: {} },
+            ];
+
+          }
+
 
           if (this.currentUser.accept_terms != true) {
             // The terms have changed - we need to get him to accept the terms again
@@ -362,7 +362,7 @@ export class MyApp {
     }
   }
 
-  
+
   hideSplashScreen() {
     if (this.splashScreen) {
       setTimeout(() => {

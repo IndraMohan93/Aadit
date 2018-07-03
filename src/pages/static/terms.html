@@ -15,10 +15,10 @@
 
 <ion-content padding>
 
-  <ion-card>
+  <ion-card style="height: 80%">
     <ion-card-content>
 
-      <p>
+      <p style="font-size: 12px">
         Aadit Life recommends that you consult with your physician before beginning any exercise program. While the program is conservative,
         and workouts are based on a wellness evaluation that is conducted, there is still the possibility that an existing
         condition could be aggravated during the wellness evaluation - or over the course of the program. You should understand
@@ -28,26 +28,37 @@
         discharge Aadit Life Wellness (OPC) Pvt. Ltd. from any and all claims or causes of action, known or unknown, that
         may happen during the program.
       </p>
-      <p>
-        <br/>
-
-      </p>
-      <p>In checking the box below I confirm that I have read, understood and agree to the terms of the Disclaimer / Liability
+      <br/>
+      <p style="font-size: 12px">In checking the box below I confirm that I have read, understood and agree to the terms of the Disclaimer / Liability
         Waiver
       </p>
-    
-      
-        <ul class = "list">
-            <li class = "item item-checkbox checkbox-positive" (click)="saveAggrement()">
-               I Agree
-               <label class = "checkbox">
-                  <input type = "checkbox" />
-               </label>
-            </li>
-         
-</ul>
-          
+
+      <ion-item>
+        <ion-checkbox [(ngModel)]="checkbox" (click)="saveAggrement()"></ion-checkbox>
+        <ion-label>I Agree</ion-label>
+
+      </ion-item>
+
+
+      <!-- <ul class="list">
+        <li class="item item-checkbox checkbox-positive" (click)="saveAggrement()">
+          I Agree
+          <label class="checkbox">
+            <input type="checkbox" />
+          </label>
+        </li>
+
+      </ul> -->
+
     </ion-card-content>
+
   </ion-card>
+  <button ion-button (click)="onSubmit()" style=" border-radius: 4px;
+  height: 2.8em;
+  font-size: 1.6rem;
+  color: #fff;
+  background-color: rebeccapurple;
+  margin: 3.4rem 13.2rem;
+  padding: 0 1em;">Submit</button>
 
 </ion-content>

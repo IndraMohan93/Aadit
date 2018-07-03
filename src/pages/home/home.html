@@ -14,7 +14,7 @@
       <div class="card-subtitle">{{currentUser.first_name}} {{currentUser.last_name}}</div>
     </ion-card>
   </div> -->
-  <ion-card style="height: 620px">
+  <ion-card *ngIf="currentUser" style="height: 620px">
     <!-- <ion-item class="card-title">Welcome</ion-item>
     <ion-item class="card-subtitle">{{currentUser.first_name}} {{currentUser.last_name}}</ion-item> -->
     <h2 style="padding-left: 83px;padding-top: 40px;color: indianred">Welcome {{currentUser.first_name}} {{currentUser.last_name}}</h2>

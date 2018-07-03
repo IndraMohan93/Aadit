@@ -6,19 +6,65 @@
 -->
 <ion-header>
 
-  <ion-navbar color="primary">
-    <ion-title>Contact</ion-title>
+  <ion-navbar>
+    <ion-title style="background-color: rebeccapurple">CONTACT US</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <ion-card>
+  <h5>Visit our website
+    <a href="http://www.aaditlife.com">http://www.aaditlife.com</a>
+  </h5>
+  <h5>You can call us on :
+    <a href="">+91 73380 86009</a>
+  </h5>
+
+  <h5>For queries mail to
+    <a href="">anand.valavi@aaditlife.com</a>
+  </h5>
+
+  <h4>You can Join Us On </h4>
+  <br/>
+  <ion-row>
+    <img src="assets/facebook.png" style="max-width: 40%;border: 0;height: 40px;">
+    <img src="assets/googleplus.jpg" style="max-width: 40%;border: 0;height: 40px;">
+  </ion-row>
+
+  <br/>
+  <h4>Or Leave your Message </h4>
+
+  <br/>
+  <ion-item>
+    <ion-input type="text" [(ngModel)]="Mail" placeholder="Your Mail"></ion-input>
+  </ion-item>
+  <br/>
+  <ion-item>
+    <ion-input type="text" [(ngModel)]="title" placeholder="Title"></ion-input>
+  </ion-item>
+  <br/>
+  <ion-item>
+    <ion-textarea [(ngModel)]="Message" placeholder="Your Message"></ion-textarea>
+  </ion-item>
+  <br/>
+  <button ion-button style=" border-radius: 4px;
+  height: 2.8em;
+  font-size: 1.6rem;
+  color: #fff;
+  background-color: rebeccapurple;
+  margin: 3.4rem 13.2rem;
+  padding: 0 1em;">Submit</button>
+
+
+
+
+
+  <!-- <ion-card>
     <ion-card-content>
       <p>Email: anand.valavi@aaditlife.com</p>
       <p>Website: http://www.aaditlife.com</p>
       <p tel="+917338086009">Phone: +91 73380 86009</p>
     </ion-card-content>
-  </ion-card>
+  </ion-card> -->
 </ion-content>

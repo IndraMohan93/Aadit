@@ -26,7 +26,7 @@ export class HomePage implements Menu {
   currentUser: any;
   registerCareHome = false;
   message: any;
-
+  schedule: any;
   constructor(public navCtrl: NavController,
     public respUtility: ResponseUtility,
     public tokenService: Angular2TokenService,

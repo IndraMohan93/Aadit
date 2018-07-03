@@ -6,7 +6,7 @@
 
 </ion-header>
 
-<ion-content padding #schedule_content (click)=rateSchedule(schedule)>
+<ion-content padding #schedule_content>
 
   <ion-list inset *ngIf="schedule && schedule.workout_type">
     <ion-item-divider class="schedule_header" text-wrap text-center [style.backgroundColor]="(schedule.workout_type != 'Strength') ? '#32db64' : '#488aff'">
@@ -144,5 +144,71 @@
 
   </ion-list>
 
+  <button (click)="feedback()" *ngIf="!NotComplete" style="border-radius: 4px;
+  height: 2.8em;
+  font-size: 1.6rem;
+  color: #fff;
+  background-color: rebeccapurple;
+  margin: 0.4rem 10.2rem;
+  padding: 0 1em;" ion-button>Complete</button>
 
+  <button (click)="feedback()" *ngIf="NotComplete" style="border-radius: 4px;
+  height: 2.8em;
+  font-size: 1.6rem;
+  color: #fff;
+  background-color: green;
+  margin: 0.4rem 10.2rem;
+  padding: 0 1em;" ion-button>Completed</button>
+  <p *ngIf="NotComplete" style="color:blue;
+  font-size: 17px;
+  margin-left: 10px;">You have completed the today's exercise</p>
+  <p *ngIf="!NotComplete &&showSmileys" style="color:blue;
+  font-size: 17px;
+  margin-left: 10px;">Provide feedback by clicking on smilieys</p>
+  <form [formGroup]="slideOneForm" *ngIf="!NotComplete && showSmileys">
+
+    <ion-item-divider text-wrap text-center color="secondary" *ngIf="schedule.rating == 1">
+      Great! Good going & keep it up.
+    </ion-item-divider>
+    <ion-item-divider text-wrap text-center color="light" *ngIf="schedule.rating == 0">
+      Ok. Sure you'll do better next time.
+    </ion-item-divider>
+    <ion-item-divider text-wrap text-center color="danger" *ngIf="schedule.rating == -1">
+      Oh too bad. Tell us what happened ?
+    </ion-item-divider>
+    <ion-item class="center">
+      <ion-row>
+        <ion-col>
+          <img src="assets/smiley.png" (click)="setRating(1)" style="max-width: 60%;" [style.backgroundColor]="schedule.rating == 1 ? 'green' : 'white'"
+          />
+        </ion-col>
+        <ion-col>
+          <img src="assets/neutral.png" (click)="setRating(0)" style="max-width: 60%;" [style.backgroundColor]="schedule.rating == 0 ? 'yellow' : 'white'"
+          />
+        </ion-col>
+        <ion-col>
+          <img src="assets/sad.png" (click)="setRating(-1)" style="max-width: 60%;" [style.backgroundColor]="schedule.rating == -1 ? 'red' : 'white'"
+          />
+        </ion-col>
+      </ion-row>
+    </ion-item>
+  </form>
 </ion-content>
+
+
+
+
+
+<!-- <ion-item class="center">
+      <ion-row>
+        <ion-col>
+          <img src="assets/smiley.png" (click)="setRating(1)" [style.backgroundColor]="schedule.rating == 1 ? 'green' : 'white'"/>
+        </ion-col>
+        <ion-col>
+          <img src="assets/neutral.png" (click)="setRating(0)" [style.backgroundColor]="schedule.rating == 0 ? 'yellow' : 'white'"/>
+        </ion-col>
+        <ion-col>
+          <img src="assets/sad.png" (click)="setRating(-1)" [style.backgroundColor]="schedule.rating == -1 ? 'red' : 'white'"/>
+        </ion-col>
+      </ion-row>
+    </ion-item> -->

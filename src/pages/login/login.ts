@@ -82,6 +82,8 @@ export class Login {
   }
 
 
+
+
   register() {
     this.respUtility.trackEvent("User", "Register", "click");
     this.navCtrl.push(RegisterPage);
