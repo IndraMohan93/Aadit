@@ -6,9 +6,9 @@
 -->
 <ion-header>
 
-  <ion-navbar color="primary">
+  <!-- <ion-navbar color="primary">
     <ion-title>User Details</ion-title>
-  </ion-navbar>
+  </ion-navbar> -->
 
 </ion-header>
 
@@ -16,26 +16,26 @@
 
   <div>
 
-    <button ion-item (click)="editUser(user)">
+
+    <h2>
       {{user.title}} {{user.first_name}} {{user.last_name}}
-      <p>
-        Phone: {{user.phone}}
-      </p>
-      <p>
-        Email: {{user.email}}
-      </p>
-       <p> 
-        Role: {{user.role}}
-      </p>
-      <p> 
-        Birth Year: {{user.birth_year}}
-      </p>
+    </h2>
+    <h6>
+      Phone: {{user.phone}}
+    </h6>
+    <h6>
+      Email: {{user.email}}
+    </h6>
+    <h6>
+      Role: {{user.role}}
+    </h6>
+    <h6>
+      Birth Year: {{user.birth_year}}
+    </h6>
 
-      <div *ngIf="user.role == 'Coach'">
-      
-      </div>
+    <div *ngIf="user.role == 'Coach'">
 
-    </button>
+    </div>
 
     <ion-row>
 

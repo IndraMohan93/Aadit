@@ -1,7 +1,7 @@
 <ion-header>
 
-  <ion-navbar color="primary">
-    <ion-title>Goals</ion-title>
+  <ion-navbar>
+    <ion-title style="background-color: rebeccapurple;">Goals</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -9,7 +9,7 @@
 
 <ion-content>
 
-  <ion-list inset >
+  <ion-list inset>
 
     <button ion-item *ngFor="let goal of goals" (click)=getGoalDetails(goal)>
 

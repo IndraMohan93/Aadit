@@ -1,7 +1,7 @@
 <ion-header>
 
-  <ion-navbar color="primary" *ngIf="showNavbar">
-    <ion-title>Workouts</ion-title>
+  <ion-navbar *ngIf="showNavbar">
+    <ion-title style="background-color: rebeccapurple">Workouts</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -9,63 +9,228 @@
 
 <ion-content>
 
-  <ion-list inset>
+  <ion-list inset *ngFor="let workout of workouts" (click)=getWorkoutDetails(workout)>
+    <ion-item-divider text-center color="secondary" style="
+    background-color:  mediumseagreen;">{{workout.workout_type}}</ion-item-divider>
+    <!-- <div *ngIf="workout?.workout_type != 'Strength'" class="content-height"> -->
+    <ion-grid class="add-border height-70">
+      <ion-row>
+        <ion-col col-4>
+
+        </ion-col>
+
+
+
+        <ion-col col-4>
+          <ion-icon name="clock"></ion-icon> Time (mins)
+        </ion-col>
+        <ion-col col-4>
+          <ion-icon name="speedometer"></ion-icon> Speed(kph)
+        </ion-col>
+      </ion-row>
+
+
+      <ion-row>
+        <ion-col col-4>
+          <ion-icon name="walk"></ion-icon> Activity
+        </ion-col>
+
+        <ion-col col-4>
+          {{workout.activity_time}}
+        </ion-col>
+        <ion-col col-4>
+          {{workout.activity_speed}}
+        </ion-col>
+
+
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-4>
+          <ion-icon name="man"></ion-icon> Rest
+        </ion-col>
+
+
+
+        <ion-col col-4>
+          {{workout.recovery_time}}
+        </ion-col>
+        <ion-col col-4>
+          {{workout.recovery_speed}}
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid class="height-30">
+      <ion-row>
+        <ion-col ion-col-9>
+          <ion-grid>
+            <ion-row>
+              <ion-col col-8>
+                Repeat
+              </ion-col>
+              <ion-col col-4>
+                {{workout.repeats}}
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-8>
+                Duration
+              </ion-col>
+              <ion-col col-4>
+                {{workout.total_duration}}
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <!-- </div> -->
+
+
+
+    <!-- <div *ngIf="schedule?.workout_type == 'Strength'">
+        <ion-grid class="add-border height-70">
+          <ion-row>
+            <ion-col col-6>
+              Balance : {{schedule?.exercise?.balance}}
+            </ion-col>
+            <ion-col col-6>
+              Crunches: {{schedule?.exercise?.crunches}}
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-6>
+              Leg Raise: {{schedule?.exercise?.leg_raise_both}}
+            </ion-col>
+            <ion-col col-6>
+              One Leg Raise: {{schedule?.exercise?.one_leg_raise}}
+            </ion-col>
+          </ion-row>
+          <ion-row>
+  
+  
+            <ion-col col-6>
+              Plank :{{schedule?.exercise?.plank}}
+            </ion-col>
+  
+            <ion-col col-6>
+              Push Ups: {{schedule?.exercise?.pushups}}
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-6>
+              Squats: {{schedule?.exercise?.sqauts}}
+            </ion-col>
+            <ion-col col-6>
+              Superman:{{schedule?.exercise?.superman}}
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+       
+      </div> -->
+  </ion-list>
+
+  <ion-list *ngFor="let strength_workout of strength_workouts" (click)=getStrengthWorkoutDetails(workout)>
+    <ion-item-divider text-center color="secondary" style="
+    background-color:mediumseagreen;">Strength</ion-item-divider>
+
+
+    <ion-grid class="add-border height-70">
+      <ion-row>
+        <ion-col col-6>
+          Balance : {{strength_workout.balance}}
+        </ion-col>
+        <ion-col col-6>
+          Crunches: {{strength_workout.crunches}}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6>
+          Leg Raise: {{strength_workout.leg_raise_both}}
+        </ion-col>
+        <ion-col col-6>
+          One Leg Raise: {{strength_workout.one_leg_raise}}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+
+
+        <ion-col col-6>
+          Plank :{{strength_workout.plank}}
+        </ion-col>
+
+        <ion-col col-6>
+          Push Ups: {{strength_workout.pushups}}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6>
+          Squats: {{strength_workout.sqauts}}
+        </ion-col>
+        <ion-col col-6>
+          Superman:{{strength_workout.superman}}
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+
+  <!-- <ion-list inset>
 
     <button ion-item *ngFor="let workout of workouts" (click)=getWorkoutDetails(workout)>
 
-        <ion-item-divider text-center color="secondary">{{workout.workout_type}}</ion-item-divider>
-        <ion-item>
-          <ion-row>
-            <ion-col text-wrap>
-              Activity Time:
-            </ion-col>
-            <ion-col text-wrap>
-              {{workout.activity_time}} mins
-            </ion-col>
-            <ion-col text-wrap>
-              Activity Speed:
-            </ion-col>
-            <ion-col text-wrap>
-              {{workout.activity_speed}} Kmh
-            </ion-col>
-          </ion-row>
-        </ion-item>
-    
-        <ion-item>
-          <ion-row>
-            <ion-col text-wrap>
-              Recovery Time
-            </ion-col>
-            <ion-col text-wrap>
-              {{workout.recovery_time}} mins
-            </ion-col>
-            <ion-col text-wrap>
-              Recovery Speed:
-            </ion-col>
-            <ion-col text-wrap>
-              {{workout.recovery_speed}} Kmh
-            </ion-col>
-          </ion-row>
-        </ion-item>
-    
-        <ion-item>
-          <ion-row>
-            <ion-col text-wrap>
-              Repeats:
-            </ion-col>
-            <ion-col text-wrap>
-              {{workout.repeats}}
-            </ion-col>
-            <ion-col text-wrap>
-              Total Duration:
-            </ion-col>
-            <ion-col text-wrap>
-              {{workout.total_duration}} mins
-            </ion-col>
-          </ion-row>
-        </ion-item>
-    
-    
+      <ion-item-divider text-center color="secondary">{{workout.workout_type}}</ion-item-divider>
+      <ion-item>
+        <ion-row>
+          <ion-col text-wrap>
+            Activity Time:
+          </ion-col>
+          <ion-col text-wrap>
+            {{workout.activity_time}} mins
+          </ion-col>
+          <ion-col text-wrap>
+            Activity Speed:
+          </ion-col>
+          <ion-col text-wrap>
+            {{workout.activity_speed}} Kmh
+          </ion-col>
+        </ion-row>
+      </ion-item>
+
+      <ion-item>
+        <ion-row>
+          <ion-col text-wrap>
+            Recovery Time
+          </ion-col>
+          <ion-col text-wrap>
+            {{workout.recovery_time}} mins
+          </ion-col>
+          <ion-col text-wrap>
+            Recovery Speed:
+          </ion-col>
+          <ion-col text-wrap>
+            {{workout.recovery_speed}} Kmh
+          </ion-col>
+        </ion-row>
+      </ion-item>
+
+      <ion-item>
+        <ion-row>
+          <ion-col text-wrap>
+            Repeats:
+          </ion-col>
+          <ion-col text-wrap>
+            {{workout.repeats}}
+          </ion-col>
+          <ion-col text-wrap>
+            Total Duration:
+          </ion-col>
+          <ion-col text-wrap>
+            {{workout.total_duration}} mins
+          </ion-col>
+        </ion-row>
+      </ion-item>
+
+
     </button>
 
     <button ion-item *ngFor="let strength_workout of strength_workouts" (click)=getStrengthWorkoutDetails(workout)>
@@ -139,8 +304,8 @@
       </ion-item>
 
     </button>
-  
-  </ion-list>
 
-  
+  </ion-list> -->
+
+
 </ion-content>

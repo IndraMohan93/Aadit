@@ -1,7 +1,7 @@
 <ion-header>
 
-  <ion-navbar color="primary">
-    <ion-title>StressTests</ion-title>
+  <ion-navbar>
+    <ion-title style="background-color: rebeccapurple;">StressTests</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -11,6 +11,10 @@
 
   <ion-list inset>
 
+    <h2 style="font-size: 2.4rem;
+    color: indianred;
+    float: center;
+    margin-left: 53px;">Test Results/details</h2>
     <button ion-item *ngFor="let stress_test of stress_tests" (click)=getStressTestDetails(stress_test)>
 
       Test Date: {{stress_test.created_at | date}}
@@ -24,8 +28,11 @@
 
   </ion-list>
 
-  <ion-fab bottom right>
-    <button ion-fab (click)="newStressTestDetails()">+</button>
-  </ion-fab>
+  <div>
+    <button style="border-radius: 4px; height: 2.8em; font-size: 1.6rem; color: #fff; background-color: #488aff; margin: 4.4rem
+    9.2rem; padding: 0 1em; width: 45%; background-color: rebeccapurple; " ion-button (click)="newStressTestDetails() ">Take Test</button>
+
+  </div>
+
 
 </ion-content>

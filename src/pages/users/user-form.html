@@ -6,9 +6,9 @@
 -->
 <ion-header>
 
-  <ion-navbar color="primary">
+  <!-- <ion-navbar color="primary">
     <ion-title>User</ion-title>
-  </ion-navbar>
+  </ion-navbar> -->
 
 </ion-header>
 
@@ -25,11 +25,11 @@
         <ion-label floating>Company</ion-label>
         <ion-select name="company_id" [(ngModel)]="user.company_id" [class.invalid]="!slideOneForm.controls.company_id.valid && (slideOneForm.controls.company_id.dirty || submitAttempt)"
           formControlName="company_id">
-          <ion-option  *ngFor="let company of companies" [value]="company.id">{{company.name}}</ion-option>
+          <ion-option *ngFor="let company of companies" [value]="company.id">{{company.name}}</ion-option>
         </ion-select>
       </ion-item>
 
-      
+
       <ion-item id="gender">
         <ion-label floating>Gender</ion-label>
         <ion-select name="gender" [(ngModel)]="user.gender" [class.invalid]="!slideOneForm.controls.gender.valid && (slideOneForm.controls.gender.dirty || submitAttempt)"
@@ -111,9 +111,7 @@
 
       <div text-wrap>
         <ion-item>
-          <ion-checkbox id="accept_terms" [(ngModel)]="user.accept_terms" 
-          formControlName="accept_terms" type="text" 
-          (ionChange)="onTermsChecked($event)"></ion-checkbox>
+          <ion-checkbox id="accept_terms" [(ngModel)]="user.accept_terms" formControlName="accept_terms" type="text" (ionChange)="onTermsChecked($event)"></ion-checkbox>
           <ion-label text-warp>I have read and agree to the Terms & Conditions</ion-label>
         </ion-item>
         <button ion-button full clear color="primary" (click)="show_terms()">Terms & Conditions</button>

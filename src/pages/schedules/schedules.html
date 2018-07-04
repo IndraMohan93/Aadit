@@ -109,7 +109,7 @@
             </ion-grid>
           </ion-col>
           <ion-col ion-col-3>
-            <span *ngIf="!schedule?.rating" style="max-width: 20%;">No Rating</span>
+            <span *ngIf="schedule?.rating==null" style="max-width: 20%;">No Rating</span>
             <img src="assets/smiley.png" *ngIf="schedule?.rating==1" style="max-width: 20%;">
             <img src="assets/neutral.png" *ngIf="schedule?.rating==0" style="max-width: 20%;">
             <img src="assets/sad.png" *ngIf="schedule?.rating==-1" style="max-width: 20%;">
@@ -157,7 +157,7 @@
       <ion-grid class="height-30">
         <ion-row>
           <ion-col ion-col-9>
-            <ion-grid>
+            <!-- <ion-grid>
               <ion-row>
                 <ion-col col-8>
                   Repeat
@@ -174,10 +174,10 @@
                   {{schedule?.exercise?.total_duration}}
                 </ion-col>
               </ion-row>
-            </ion-grid>
+            </ion-grid> -->
           </ion-col>
           <ion-col ion-col-3>
-            <span *ngIf="!schedule?.rating" style="max-width: 20%;">No Rating</span>
+            <span *ngIf="schedule?.rating==null" style="max-width: 20%;">No Rating</span>
             <img src="assets/smiley.png" *ngIf="schedule?.rating==1" style="max-width: 20%;">
             <img src="assets/neutral.png" *ngIf="schedule?.rating==0" style="max-width: 20%;">
             <img src="assets/sad.png" *ngIf="schedule?.rating==-1" style="max-width: 20%;">
