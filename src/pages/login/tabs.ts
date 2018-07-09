@@ -18,6 +18,7 @@ export class TabsPage {
     scheduleRoot = Schedules;
 
     currentUser: any;
+    schedule: boolean;
 
     constructor(public respUtility: ResponseUtility,
         public events: Events,
@@ -25,6 +26,7 @@ export class TabsPage {
         this.currentUser = tokenService.currentUserData;
         this.events.subscribe('user:login:success', () => {
             this.currentUser = tokenService.currentUserData;
+            this.schedule = this.currentUser.schedule;
         });
         this.events.subscribe('user:logout:success', () => {
             console.log("Hiding tabs as user logged out");

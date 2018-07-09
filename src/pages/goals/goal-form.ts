@@ -8,6 +8,7 @@ import { Angular2TokenService } from 'angular2-token';
 import { GoalValidator } from './goal-validator'
 import { TermsPage } from '../static/terms';
 import { CheckboxValidator } from '../../providers/checkbox-validator';
+import { MedicalForm } from '../medicals/medical-form';
 
 @Component({
   selector: 'goal-form',
@@ -33,7 +34,7 @@ export class GoalForm {
     private keyboard: Keyboard) {
 
     this.goal = this.navParams.data;
-    console.log(this.goal);  
+    console.log(this.goal);
 
     this.slideOneForm = formBuilder.group({
       reason: ['', Validators.compose([Validators.minLength(10), Validators.required])],
@@ -82,7 +83,9 @@ export class GoalForm {
         this.goalApi.createGoal(this.goal).subscribe(
           goal => {
             this.respUtility.showSuccess('Goal saved successfully.');
-            this.navCtrl.pop();
+            this.navCtrl.push(MedicalForm);
+            // this.navCtrl.popToRoot();
+
           },
           error => {
             this.respUtility.showFailure(error);

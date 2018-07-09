@@ -12,7 +12,10 @@ import { Menu } from './menus';
 import { HomeEvents } from '../../providers/home-events';
 import { GoalForm } from '../goals/goal-form';
 import { ScheduleDetails } from '../schedules/schedule-details';
+import { MedicalForm } from '../medicals/medical-form';
+import { UserForm } from '../users/user-form';
 import { FoodLogs } from '../food-logs/food-logs';
+import { Goals } from '../goals/goals';
 
 
 @Component({
@@ -54,6 +57,7 @@ export class HomePage implements Menu {
     //     this.message = "No schedule for today";
     //   }
     // });
+
   }
 
   displayMsgs() {
@@ -62,11 +66,28 @@ export class HomePage implements Menu {
 
   ionViewWillEnter() {
     console.log('ionViewWillEnter HomePage ');
+    console.log("in home page", this.currentUser, this.scheduleDetails, this.currentUser.accept_terms, this.currentUser.goals_setup);
     if (this.currentUser && this.scheduleDetails) {
       // Ensure that the scheduleDetails available are shown
       this.scheduleDetails.loadTodaysSchedule();
       this.scheduleDetails.hideNavbar();
-    };
+    }
+    // if (this.currentUser.initial_test_completed == null) {
+    // if (this.currentUser.accept_terms != true) {
+    //   // The terms have changed - we need to get him to accept the terms again
+    //   this.respUtility.showWarning("Our terms have changed. Please read and accept the terms & conditions");
+    //   this.edit_profile();
+    // }
+    if (this.currentUser.goals_setup != true) {
+      // The terms have changed - we need to get him to accept the terms again
+      this.currentUser.goals_setup = true;
+      this.respUtility.showWarning("Please setup your goals");
+      this.setup_goals();
+    }
+
+
+
+    // }
 
   }
 
@@ -89,12 +110,24 @@ export class HomePage implements Menu {
   //   this.navCtrl.push(ContactPage);
   // }
 
-  // setupGoals() {
-  //   this.navCtrl.push(GoalForm, {})
-  // }
+  setup_goals() {
+    //this.currentUser.goals_setup = true;
+    this.navCtrl.push(GoalForm, {})
+  }
+  edit_profile() {
+    //this.currentUser.goals_setup=true;
+    this.navCtrl.push(UserForm, this.currentUser);
+  }
 
-  // setupFitnessTest() {
-  //   this.navCtrl.push(GoalForm, {})
-  // }
+  setup_medicals() {
+    // this.currentUser.medical_setup = true;
+    this.navCtrl.push(MedicalForm, {});
+  }
+
+
+
+  setupFitnessTest() {
+    this.navCtrl.push(GoalForm, {})
+  }
 
 }

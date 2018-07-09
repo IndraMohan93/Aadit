@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, ToastController, LoadingController } from 'ionic-angular';
 import { FitnessTestApi } from '../../providers/fitness-test-api';
 import { ResponseUtility } from '../../providers/response-utility';
-import {Workouts} from '../workouts/workouts';
-import {Schedules} from '../schedules/schedules';
+import { Workouts } from '../workouts/workouts';
+import { Schedules } from '../schedules/schedules';
 import * as _ from 'lodash';
 import { CardioProfiles } from '../cardio-profile/cardio-profiles';
 
@@ -11,7 +11,7 @@ import { CardioProfiles } from '../cardio-profile/cardio-profiles';
   selector: 'page-fitness-test-details',
   templateUrl: 'fitness-test-details.html',
 })
-export class FitnessTestDetails  {
+export class FitnessTestDetails {
 
   fitness_test: any;
 
@@ -84,17 +84,17 @@ export class FitnessTestDetails  {
 
   showWorkouts() {
     this.respUtility.trackEvent("Workout", "Details", "click");
-    this.navCtrl.push(Workouts, {fitness_test_id: this.fitness_test.id});
+    this.navCtrl.push(Workouts, { fitness_test_id: this.fitness_test.id });
   }
 
   showSchedules() {
-      this.respUtility.trackEvent("Schedule", "Details", "click");
-      this.navCtrl.push(Schedules, {fitness_test_id: this.fitness_test.id});
+    this.respUtility.trackEvent("Schedule", "Details", "click");
+    this.navCtrl.push(Schedules, { fitness_test_id: this.fitness_test.id });
   }
 
   showCardioProfile() {
     this.respUtility.trackEvent("CardioProfiles", "Details", "click");
     this.navCtrl.push(CardioProfiles, this.fitness_test.cardio_profiles);
-}
+  }
 
 }

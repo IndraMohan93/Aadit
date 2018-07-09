@@ -204,9 +204,9 @@ export class MyApp {
 
           } else {
             this.pages = [
-              { title: 'Goals', component: Goals, params: {} },
-              { title: 'Medicals', component: MedicalForm, params: { load_from_server: true } },
-              { title: 'Tests', component: FitnessTests, params: {} },
+              // { title: 'Goals', component: Goals, params: {} },
+              // { title: 'Medicals', component: MedicalForm, params: { load_from_server: true } },
+              // { title: 'Tests', component: FitnessTests, params: {} },
               // { title: 'About Us', component: AboutPage, params: {} },
               { title: 'Terms & Conditions', component: TermsPage, params: {} },
               { title: 'Contact Us', component: ContactPage, params: {} },
@@ -216,19 +216,19 @@ export class MyApp {
           }
 
 
-          if (this.currentUser.accept_terms != true) {
-            // The terms have changed - we need to get him to accept the terms again
-            this.respUtility.showWarning("Our terms have changed. Please read and accept the terms & conditions");
-            this.edit_profile();
-          } else if (this.currentUser.goals_setup != true) {
-            // The terms have changed - we need to get him to accept the terms again
-            this.respUtility.showWarning("Please setup your goals");
-            this.setup_goals();
-          } else if (this.currentUser.medical_setup != true) {
-            // The terms have changed - we need to get him to accept the terms again
-            this.respUtility.showWarning("Please enter your medical history");
-            this.setup_medicals();
-          }
+          // if (this.currentUser.accept_terms == null) {
+          //   // The terms have changed - we need to get him to accept the terms again
+          //   this.respUtility.showWarning("Our terms have changed. Please read and accept the terms & conditions");
+          //   this.edit_profile();
+          // } else if (this.currentUser.goals_setup == null) {
+          //   // The terms have changed - we need to get him to accept the terms again
+          //   this.respUtility.showWarning("Please setup your goals");
+          //   this.setup_goals();
+          // } else if (this.currentUser.medical_setup == null) {
+          //   // The terms have changed - we need to get him to accept the terms again
+          //   this.respUtility.showWarning("Please enter your medical history");
+          //   this.setup_medicals();
+          // }
 
 
         });

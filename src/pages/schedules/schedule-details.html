@@ -296,7 +296,7 @@
 
   </ion-list>
 
-  <button (click)="feedback()" *ngIf="!NotComplete" style="border-radius: 4px;
+  <button (click)="feedback()" *ngIf="schedule && !NotComplete" style="border-radius: 4px;
   height: 2.8em;
   font-size: 1.6rem;
   color: #fff;
@@ -304,13 +304,20 @@
   margin: 0.4rem 10.2rem;
   padding: 0 1em;" ion-button>Complete</button>
 
-  <button (click)="feedback()" *ngIf="NotComplete" style="border-radius: 4px;
+
+
+  <button (click)="feedback()" *ngIf="schedule && NotComplete" style="border-radius: 4px;
   height: 2.8em;
   font-size: 1.6rem;
   color: #fff;
   background-color: green;
   margin: 0.4rem 10.2rem;
   padding: 0 1em;" ion-button>Completed</button>
+
+  <p *ngIf="!schedule && !NotComplete" style="color:blue;
+  font-size: 17px;
+  margin-left: 10px;">You dt have any schedules. Please wait for your admin to create schedules</p>
+
   <p *ngIf="NotComplete" style="color:blue;
   font-size: 17px;
   margin-left: 10px;">You have completed the today's exercise</p>

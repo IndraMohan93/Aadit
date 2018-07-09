@@ -72,6 +72,7 @@ export class Login {
   login() {
     this.respUtility.trackEvent("User", "Login", "click");
     this.loginProvider.login(this.email, this.password, this.navCtrl);
+
   }
   public signin(source: string) {
     this.oauthService.login(source)

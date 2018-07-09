@@ -7,6 +7,9 @@ import * as $ from "jquery";
 import * as s from './fitness-tests-details.scss';
 import { DatePipe } from '@angular/common';
 import { StressTestApi } from '../../providers/stress-test-api';
+import { mergeMap } from 'rxjs/operators';
+import { forkJoin } from "rxjs/observable/forkJoin";
+
 declare var require: any;
 require('highcharts/highcharts-more')(HighCharts);
 @Component({
@@ -17,7 +20,7 @@ export class FitnessTests {
   fitness_tests_data: any;
   weightArr: any;
   stress_tests: any;
-  targets : any;
+  targets: any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public loadingController: LoadingController,
     public fitness_test_api: FitnessTestApi,
@@ -146,6 +149,7 @@ export class FitnessTests {
         speeds.push(point);
         speedSet.add(c.speed);
       });
+      console.log("cp[0]", cp[0]);
       var dtName = new DatePipe('en-US').transform(new Date(cp[0].on_date), 'dd MMM');
       seriesArr.push({ name: dtName, data: speeds });
     };
@@ -444,23 +448,26 @@ export class FitnessTests {
       console.log("fitness tests present");
       return Promise.resolve(this.fitness_tests_data);
     }
+
     let loader = this.loadingController.create({
       content: 'Loading FitnessTests..'
     });
     loader.present();
-    this.fitness_test_api.getFitnessTests().subscribe(
-      fitness_tests => {
-        this.fitness_tests_data = fitness_tests;
-        this.makeChart();
-      },
-      error => {
-        this.respUtility.showFailure(error);
-      }
-    );
+
+    this.fitness_test_api.getFitnessTests()
+      .subscribe(
+        fitness_tests => {
+          this.fitness_tests_data = fitness_tests;
+          this.makeChart();
+        },
+        error => {
+          this.respUtility.showFailure(error);
+        }
+      );
     this.fitness_test_api.getTargetDetails().subscribe(
       targets => {
         this.targets = targets;
-        console.log('targets = ',this.targets);
+        console.log('targets = ', this.targets);
         //this.makeChart();
       },
       error => {
@@ -481,5 +488,6 @@ export class FitnessTests {
       },
       () => { loader.dismiss(); }
     );
+
   }
 }

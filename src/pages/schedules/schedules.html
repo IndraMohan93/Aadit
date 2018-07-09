@@ -7,18 +7,31 @@
 
 <ion-content>
 
+  <div *ngIf="!schedules && !scheduleHistory">
+    <ion-card-title class="center">
+      Your workout schedule needs to be created.
+    </ion-card-title>
+    <p>
+      Please click the button below to create your workout schedule. Choose the days you want to schedule the appropriate workout
+      on.
+    </p>
+
+    <button ion-button full color="primary" (click)="createSchedule()">Create Schedule</button>
+  </div>
+
+  <!-- <div *ngIf="scheduleHistory"> -->
   <ion-calendar class="calender-height" [(ngModel)]="date" (onChange)="onChange($event)" [options]="options" type="string"
     format="YYYY-MM-DD">
   </ion-calendar>
+  <!-- </div> -->
 
-
-  <div *ngIf="!checkStatus">
+  <div *ngIf="!checkStatus ">
     <br/>
     <br/>
     <h5>Not Scheduled</h5>
   </div>
 
-  <div *ngIf="checkStatus">
+  <div *ngIf="checkStatus && scheduleHistory">
     {{schedule?.workout_type}}
     <div *ngIf="schedule?.workout_type != 'Strength'" class="content-height">
       <ion-grid class="add-border height-70">
@@ -118,7 +131,7 @@
       </ion-grid>
     </div>
 
-    <div *ngIf="schedule?.workout_type == 'Strength'">
+    <div *ngIf="schedule?.workout_type == 'Strength' && scheduleHistory">
       <!-- Add card content here! -->
       <ion-grid class="add-border height-70">
         <ion-row>
@@ -219,5 +232,8 @@
   </ion-list>
 
 -->
+
+
+
 
 </ion-content>

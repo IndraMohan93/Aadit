@@ -9,7 +9,7 @@ import { UserValidator } from './user-validator'
 import { TermsPage } from '../static/terms';
 import { CheckboxValidator } from '../../providers/checkbox-validator';
 import { CompanyApi } from '../../providers/company-api';
-
+import { GoalForm } from '../goals/goal-form';
 @Component({
   selector: 'page-user-form',
   templateUrl: 'user-form.html',
@@ -41,7 +41,7 @@ export class UserForm {
     private keyboard: Keyboard) {
 
     this.user = this.navParams.data;
-    if(this.user["company_id"] && this.user["company_id"] == -1) {
+    if (this.user["company_id"] && this.user["company_id"] == -1) {
       this.companyApi.getCompanies().subscribe(
         companies => {
           this.companies = companies;
@@ -65,7 +65,7 @@ export class UserForm {
       phone: ['', Validators.compose([Validators.minLength(10), Validators.maxLength(11), Validators.pattern('^\\d+$')])],
     }, { "validator": this.isMatching });
 
-    
+
     // Password may not be visible, hence disable validations 
     if (this.user["id"]) {
       this.slideOneForm.controls["password"].disable();
@@ -127,6 +127,7 @@ export class UserForm {
           user => {
             this.respUtility.showSuccess('User saved successfully.');
             this.navCtrl.pop();
+            //  this.navCtrl.push(GoalForm, {})
           },
           error => {
             this.respUtility.showFailure(error);
@@ -147,6 +148,7 @@ export class UserForm {
         console.log(res);
         this.respUtility.showSuccess("Please check your email for verification link. Verfiy your email & then login.");
         this.navCtrl.popToRoot();
+        //this.navCtrl.push(GoalForm, {})
       },
       error => {
         console.log(error);

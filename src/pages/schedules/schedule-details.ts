@@ -165,7 +165,7 @@ export class ScheduleDetails {
     this.slideOneForm.controls['rating'].setValue(val);
     this.schedule["rating"] = val;
     console.log(`Set rating to ${val}`);
-    if (val) { //val != -1 
+    if (val != -1 || val == -1) { //val != -1 
       setTimeout(() => {
         this.save();
       }, 1000);

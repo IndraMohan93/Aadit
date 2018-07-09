@@ -21,6 +21,7 @@ export class Schedules {
   schedules: any;
   schedule: any;
   fitness_test_id: any = null;
+  scheduleHistory: boolean;
   Data: any;
   date: string = new Date().toISOString();
   options: CalendarComponentOptions;
@@ -45,23 +46,30 @@ export class Schedules {
       content: 'Loading Schedules..'
     });
 
-    loader.present();
+    //loader.present();
 
     this.scheduleApi.getSchedules(this.fitness_test_id).subscribe(
       schedules => {
         this.schedules = schedules;
+        console.log("this.schedules", this.schedules);
         if (!!this.schedules) {
           console.log(this.schedules)
-          this.options = {
-            from: new Date(!!this.schedules[0]["scheduled_date"] ? this.schedules[0].scheduled_date : this.date)
+          if (this.schedules.length == 0) {
+            this.scheduleHistory = false;
+          } else {
+            this.scheduleHistory = true;
+            this.options = {
+              from: new Date(!!this.schedules[0]["scheduled_date"] ? this.schedules[0].scheduled_date : this.date)
+            }
+            this.schedule = this.schedules[1]
           }
-          this.schedule = this.schedules[1]
         }
         console.log("Loaded schedules");
         console.log(schedules);
-      },
-      error => { this.respUtility.showFailure(error); loader.dismiss(); },
-      () => { loader.dismiss(); }
+      }
+      // },
+      // error => { this.respUtility.showFailure(error); loader.dismiss(); },
+      // () => { loader.dismiss(); }
     );
   }
 

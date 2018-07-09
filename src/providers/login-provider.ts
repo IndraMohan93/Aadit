@@ -26,7 +26,7 @@ export class LoginProvider {
     public respUtility: ResponseUtility) {
     console.log('Hello LoginProvider Provider');
   }
-  
+
   logout() {
     console.log("logout called")
     this.tokenService.signOut().subscribe(
@@ -82,7 +82,7 @@ export class LoginProvider {
         this.storage.set("push_token", this.config.props["push_token"]);
         // Save the push token now that the user is logged in
         console.log(this.tokenService.currentUserData);
-        
+
         // Publish event - so other listners can get the newly logged in user
         this.events.publish('user:login:success');
 
