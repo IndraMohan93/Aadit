@@ -21,7 +21,7 @@ export class Schedules {
   schedules: any;
   schedule: any;
   fitness_test_id: any = null;
-  scheduleHistory: boolean;
+  scheduleHistory: boolean = true;
   Data: any;
   date: string = new Date().toISOString();
   options: CalendarComponentOptions;
@@ -52,6 +52,9 @@ export class Schedules {
       schedules => {
         this.schedules = schedules;
         console.log("this.schedules", this.schedules);
+        if (this.schedules.length == 0) {
+          this.scheduleHistory = false;
+        }
         if (!!this.schedules) {
           console.log(this.schedules)
           if (this.schedules.length == 0) {

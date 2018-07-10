@@ -9,7 +9,7 @@
 
 <ion-content>
 
-  <ion-list inset *ngFor="let workout of workouts" (click)=getWorkoutDetails(workout)>
+  <ion-list *ngFor="let workout of workouts" (click)=getWorkoutDetails(workout)>
     <ion-item-divider text-center color="secondary" style="
     background-color:  mediumseagreen;">{{workout.workout_type}}</ion-item-divider>
     <!-- <div *ngIf="workout?.workout_type != 'Strength'" class="content-height"> -->

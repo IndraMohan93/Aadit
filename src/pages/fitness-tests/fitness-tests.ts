@@ -7,9 +7,6 @@ import * as $ from "jquery";
 import * as s from './fitness-tests-details.scss';
 import { DatePipe } from '@angular/common';
 import { StressTestApi } from '../../providers/stress-test-api';
-import { mergeMap } from 'rxjs/operators';
-import { forkJoin } from "rxjs/observable/forkJoin";
-
 declare var require: any;
 require('highcharts/highcharts-more')(HighCharts);
 @Component({
@@ -133,14 +130,19 @@ export class FitnessTests {
     },
     );
   }
+
   makeChart() {
+    //this.gettargets();
     const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     var cardioprofiles = this.fitness_tests_data.map(a => a.cardio_profiles);
     var seriesArr: { name: string, data: number[][] }[];
     seriesArr = new Array();
     var speedSet = new Set<Number>();
+    console.log("cardio profiles", cardioprofiles[0]);
     for (var cp of cardioprofiles) {
       var speeds = [[2]];
+      console.log("cp", cp);
+
       cp.forEach(c => {
         var point = new Array();
         console.log('speed,bpm', c.speed, c.bpm);
@@ -148,11 +150,17 @@ export class FitnessTests {
         point.push(c.bpm);  //y
         speeds.push(point);
         speedSet.add(c.speed);
+        // var dtName = new DatePipe('en-US').transform(new Date(cp[0].on_date), 'dd MMM');
+        // seriesArr.push({ name: dtName, data: speeds });
       });
-      console.log("cp[0]", cp[0]);
-      var dtName = new DatePipe('en-US').transform(new Date(cp[0].on_date), 'dd MMM');
+
+      for (var cpdate of cardioprofiles[0]) {
+        var dtName = new DatePipe('en-US').transform(new Date(cpdate.on_date), 'dd MMM');
+      }
+
       seriesArr.push({ name: dtName, data: speeds });
     };
+
     console.log('speedSet == ', speedSet);
     HighCharts.chart('Cardio', {
       credits: {
@@ -433,6 +441,7 @@ export class FitnessTests {
     this.loadTests();
     console.log('ionViewWillEnter FitnessTests');
     this.respUtility.trackView("FitnessTests");
+
     //this.getFitnessTests();
   }
   /*sleep(milliseconds) {
@@ -444,36 +453,40 @@ export class FitnessTests {
     }
   }*/
   getFitnessTests() {
-    if (this.fitness_tests_data) {
-      console.log("fitness tests present");
-      return Promise.resolve(this.fitness_tests_data);
-    }
-
+    // if (this.fitness_tests_data) {
+    //   console.log("fitness tests present");
+    //   return Promise.resolve(this.fitness_tests_data);
+    // }
+    // if (this.targets) {
+    //   console.log("fitness tests present");
+    //   return Promise.resolve(this.targets);
+    // }
     let loader = this.loadingController.create({
       content: 'Loading FitnessTests..'
     });
     loader.present();
-
-    this.fitness_test_api.getFitnessTests()
-      .subscribe(
-        fitness_tests => {
-          this.fitness_tests_data = fitness_tests;
-          this.makeChart();
-        },
-        error => {
-          this.respUtility.showFailure(error);
-        }
-      );
-    this.fitness_test_api.getTargetDetails().subscribe(
-      targets => {
-        this.targets = targets;
-        console.log('targets = ', this.targets);
+    this.fitness_test_api.getFitnessTests().subscribe(
+      fitness_tests => {
+        this.fitness_tests_data = fitness_tests;
+        this.fitness_test_api.getTargetDetails().subscribe(
+          targets => {
+            this.targets = targets;
+            console.log('targets = ', this.targets);
+            this.makeChart();
+          },
+          error => {
+            this.respUtility.showFailure(error);
+          }
+        );
         //this.makeChart();
       },
       error => {
         this.respUtility.showFailure(error);
       }
     );
+
+
+
     this.stress_testApi.getStressTests().subscribe(
       stress_tests => {
         //this.respUtility.showSuccess("Loaded StressTest");
@@ -488,6 +501,5 @@ export class FitnessTests {
       },
       () => { loader.dismiss(); }
     );
-
   }
 }
