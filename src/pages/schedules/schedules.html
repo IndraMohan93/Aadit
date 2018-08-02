@@ -6,7 +6,7 @@
 </ion-header>
 
 <ion-content>
-
+  <!-- 
   <div *ngIf="!scheduleHistory">
     <ion-card-title class="center">
       Your workout schedule needs to be created.
@@ -16,7 +16,7 @@
       on.
     </p>
     <button ion-button full color="primary" (click)="createSchedule()">Create Schedule</button>
-  </div>
+  </div> -->
 
   <div *ngIf="scheduleHistory">
     <ion-calendar class="calender-height" [(ngModel)]="date" (onChange)="onChange($event)" [options]="options" type="string"

@@ -4,7 +4,7 @@ import { ResponseUtility } from '../../providers/response-utility';
 import { ScheduleForm } from './schedule-form';
 import { ScheduleApi } from '../../providers/schedule-api';
 import { ScheduleDetails } from './schedule-details';
-import { ScheduleCreate } from './schedule-create.';
+import { ScheduleCreate } from './schedule-create';
 import { ModalController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 
@@ -103,9 +103,9 @@ export class Schedules {
     this.navCtrl.push(ScheduleForm, schedule);
   }
 
-  createSchedule() {
-    console.log("ScheduleCreate called");
-    this.navCtrl.push(ScheduleCreate, {});
-  }
+  // createSchedule() {
+  //   console.log("ScheduleCreate called");
+  //   this.navCtrl.push(ScheduleCreate, {});
+  // }
 
 }

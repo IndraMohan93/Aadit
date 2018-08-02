@@ -26,7 +26,8 @@ export class TermsPage {
 
   onSubmit() {
     if (this.saveAgreement) {
-      this.navCtrl.popToRoot();
+      this.navCtrl.pop();
+
     } else {
       let alert = this.alertCtrl.create({
         title: 'Please select check box to agree terms and conditions',

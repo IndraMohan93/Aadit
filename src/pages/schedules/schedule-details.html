@@ -314,9 +314,22 @@
   margin: 0.4rem 10.2rem;
   padding: 0 1em;" ion-button>Completed</button>
 
-  <p *ngIf="!schedule && !NotComplete" style="color:#4688f4;
+  <div *ngIf="!schedule && !NotComplete" style="color:#4688f4;
   font-size: 17px;
-  margin-left: 10px;">Your Fitness tests are pending.Please contact your coach to schedule the tests</p>
+  margin-left: 10px;">
+
+    <!-- Your Fitness tests are pending.Please contact your coach to schedule the tests -->
+    <br/>
+    <ion-card-title class="center">
+      Your workout schedule needs to be created.
+    </ion-card-title>
+    <p>
+      Please click the button below to create your workout schedule. Choose the days you want to schedule the appropriate workout
+      on.
+    </p>
+    <button ion-button full color="primary" (click)="createSchedule()">Create Schedule</button>
+
+  </div>
 
   <p *ngIf="NotComplete" style="color:#4688f4;
   font-size: 17px;

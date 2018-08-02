@@ -6,6 +6,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as _ from 'lodash';
 import { ScheduleForm } from './schedule-form';
 
+import { ScheduleCreate } from './schedule-create';
+
 @Component({
   selector: 'schedule-details',
   templateUrl: 'schedule-details.html',
@@ -170,5 +172,10 @@ export class ScheduleDetails {
         this.save();
       }, 1000);
     }
+  }
+
+  createSchedule() {
+    console.log("ScheduleCreate called");
+    this.navCtrl.push(ScheduleCreate, {});
   }
 }

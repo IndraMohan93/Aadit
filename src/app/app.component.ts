@@ -197,7 +197,7 @@ export class MyApp {
               { title: 'Stress Tests', component: StressTests, params: {} },
               { title: 'Food Logs', component: FoodLogs, params: {} },
               // { title: 'About Us', component: AboutPage, params: {} },
-              { title: 'Terms & Conditions', component: TermsPage, params: {} },
+              // { title: 'Terms & Conditions', component: TermsPage, params: {} },
               { title: 'Contact Us', component: ContactPage, params: {} },
               // { title: 'Help', component: HelpPage, params: {} },
             ];
@@ -208,7 +208,7 @@ export class MyApp {
               // { title: 'Medicals', component: MedicalForm, params: { load_from_server: true } },
               // { title: 'Tests', component: FitnessTests, params: {} },
               // { title: 'About Us', component: AboutPage, params: {} },
-              { title: 'Terms & Conditions', component: TermsPage, params: {} },
+              // { title: 'Terms & Conditions', component: TermsPage, params: {} },
               { title: 'Contact Us', component: ContactPage, params: {} },
               // { title: 'Help', component: HelpPage, params: {} },
             ];

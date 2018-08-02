@@ -1,6 +1,6 @@
 <ion-tabs>
     <ion-tab [root]="loginRoot" [tabsHideOnSubPages]="true" [show]="currentUser == null"></ion-tab>
     <ion-tab [root]="homeRoot" tabTitle="Home" tabIcon="home" [show]="currentUser != null"></ion-tab>
-    <ion-tab [root]="foodLogRoot" tabTitle="Food Log" tabIcon="pizza"  [show]="currentUser != null"></ion-tab>
-    <ion-tab [root]="scheduleRoot" tabTitle="Schedule" tabIcon="clock" [show]="currentUser != null"></ion-tab>
+    <ion-tab [root]="foodLogRoot" tabTitle="Food Log" tabIcon="pizza" [show]="currentUser != null"></ion-tab>
+    <ion-tab [root]="scheduleRoot" tabTitle="Schedule" tabIcon="clock" [show]="currentUser != null && schedule"></ion-tab>
 </ion-tabs>

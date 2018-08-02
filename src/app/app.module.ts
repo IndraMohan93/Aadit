@@ -50,7 +50,7 @@ import { foodHistoryPage } from '../pages/food-logs/food-history';
 import { Schedules } from '../pages/schedules/schedules';
 import { ScheduleDetails } from '../pages/schedules/schedule-details';
 import { ScheduleForm } from '../pages/schedules/schedule-form';
-import { ScheduleCreate } from '../pages/schedules/schedule-create.';
+import { ScheduleCreate } from '../pages/schedules/schedule-create';
 import { CardioProfiles } from '../pages/cardio-profile/cardio-profiles';
 
 import { AboutPage } from '../pages/static/about';
