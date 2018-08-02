@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.aaditlife" version="1.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Aadit Life</name>
-    <description>Runners Unite</description>
+    <description>Wellness Simplified</description>
     <author email="admin@aaditlife.co.uk" href="http://blog.aaditlife.co.uk">Connuct Team</author>
     <content src="index.html" />
     <access origin="*" />

@@ -300,7 +300,7 @@
   height: 2.8em;
   font-size: 1.6rem;
   color: #fff;
-  background-color: rebeccapurple;
+  background-color: #4688F4;
   margin: 0.4rem 10.2rem;
   padding: 0 1em;" ion-button>Complete</button>
 
@@ -314,14 +314,14 @@
   margin: 0.4rem 10.2rem;
   padding: 0 1em;" ion-button>Completed</button>
 
-  <p *ngIf="!schedule && !NotComplete" style="color:blue;
+  <p *ngIf="!schedule && !NotComplete" style="color:#4688f4;
   font-size: 17px;
-  margin-left: 10px;">You dt have any schedules. Please wait for your admin to create schedules</p>
+  margin-left: 10px;">Your Fitness tests are pending.Please contact your coach to schedule the tests</p>
 
-  <p *ngIf="NotComplete" style="color:blue;
+  <p *ngIf="NotComplete" style="color:#4688f4;
   font-size: 17px;
   margin-left: 10px;">You have completed the today's exercise</p>
-  <p *ngIf="!NotComplete &&showSmileys" style="color:blue;
+  <p *ngIf="!NotComplete &&showSmileys" style="color:#4688f4;
   font-size: 17px;
   margin-left: 10px;">Provide feedback by clicking on smilieys</p>
   <form [formGroup]="slideOneForm" *ngIf="!NotComplete && showSmileys">
