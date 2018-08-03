@@ -19,7 +19,7 @@ export class GoalForm {
   goal: {};
 
   slideOneForm: FormGroup;
-
+  currentUser: any;
   submitAttempt: boolean = false;
 
   constructor(public navCtrl: NavController,
@@ -35,7 +35,9 @@ export class GoalForm {
 
     this.goal = this.navParams.data;
     console.log(this.goal);
+    this.currentUser = tokenService.currentUserData;
 
+    console.log("inside goal form", this.currentUser);
     this.slideOneForm = formBuilder.group({
       reason: ['', Validators.compose([Validators.minLength(10), Validators.required])],
       frequency: [],
@@ -48,11 +50,14 @@ export class GoalForm {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad GoalForm');
+
     this.respUtility.trackView("GoalForm");
   }
 
 
+
   save() {
+    this.currentUser.goal_setup = true;
     this.respUtility.trackEvent("Goal", "Save", "click");
     this.submitAttempt = true;
     //console.log(this.goal);
@@ -70,6 +75,7 @@ export class GoalForm {
       if (this.goal["id"]) {
         this.goalApi.updateGoal(this.goal).subscribe(
           goal => {
+            // this.currentUser.goal_setup = true;
             this.respUtility.showSuccess('Goal saved successfully.');
             this.navCtrl.pop();
           },
@@ -83,15 +89,19 @@ export class GoalForm {
         this.goalApi.createGoal(this.goal).subscribe(
           goal => {
             this.respUtility.showSuccess('Goal saved successfully.');
-            this.navCtrl.push(MedicalForm);
-            // this.navCtrl.popToRoot();
+            if (this.currentUser.medical_setup != true) {
+              this.navCtrl.push(MedicalForm);
+            }
+
+            this.navCtrl.popToRoot();
 
           },
           error => {
             this.respUtility.showFailure(error);
+            //this.navCtrl.pop();
             loader.dismiss();
           },
-          () => { loader.dismiss(); }
+          () => { loader.dismiss(); }//loader.dismiss(); }
         );
       }
     }

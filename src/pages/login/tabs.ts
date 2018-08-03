@@ -16,7 +16,7 @@ export class TabsPage {
     homeRoot = Login;
     foodLogRoot = FoodLogs;
     scheduleRoot = Schedules;
-
+    newUser: boolean = false;
     currentUser: any;
     schedule: boolean;
 
@@ -26,6 +26,10 @@ export class TabsPage {
         this.currentUser = tokenService.currentUserData;
         this.events.subscribe('user:login:success', () => {
             this.currentUser = tokenService.currentUserData;
+            if (this.currentUser.initial_test_completed != true) {
+                this.newUser = true;
+
+            }
             this.schedule = this.currentUser.schedule;
         });
         this.events.subscribe('user:logout:success', () => {

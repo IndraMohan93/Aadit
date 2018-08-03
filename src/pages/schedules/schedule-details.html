@@ -8,319 +8,12 @@
 
 <ion-content padding #schedule_content>
 
-  <ion-list inset *ngIf="schedule && schedule.workout_type">
-    <ion-item-divider class="schedule_header" text-wrap text-center [style.backgroundColor]="(schedule.workout_type != 'Strength') ? '#32db64' : '#488aff'">
-      <h2>{{schedule.scheduled_date | date}} : {{schedule.workout_type}}</h2>
-      <ion-icon name='checkbox' item-right *ngIf="schedule.completed"></ion-icon>
-      <ion-icon name='warning' item-right *ngIf="schedule.completed==false"></ion-icon>
-    </ion-item-divider>
-
-    <!-- 
-    {{schedule?.workout_type}} -->
-    <div *ngIf="schedule?.workout_type != 'Strength'" class="content-height">
-      <ion-grid class="add-border height-70">
-        <ion-row>
-          <ion-col col-4>
-
-          </ion-col>
-
-
-
-          <ion-col col-4>
-            <ion-icon name="clock"></ion-icon> Time (mins)
-          </ion-col>
-          <ion-col col-4>
-            <ion-icon name="speedometer"></ion-icon> Speed (kmph)
-          </ion-col>
-        </ion-row>
-
-
-        <ion-row>
-          <ion-col col-4>
-            <ion-icon name="walk"></ion-icon> Activity
-          </ion-col>
-
-          <ion-col col-4>
-            {{schedule?.exercise?.activity_time}}
-          </ion-col>
-          <ion-col col-4>
-            {{schedule?.exercise?.activity_speed}}
-          </ion-col>
-
-
-        </ion-row>
-
-        <ion-row>
-          <ion-col col-4>
-            <ion-icon name="man"></ion-icon> Recovery
-          </ion-col>
-
-
-
-          <ion-col col-4>
-            {{schedule?.exercise?.recovery_time}}
-          </ion-col>
-          <ion-col col-4>
-            {{schedule?.exercise?.recovery_speed}}
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      <ion-grid class="height-30">
-        <ion-row>
-          <ion-col ion-col-9>
-            <ion-grid>
-              <ion-row>
-                <ion-col col-8>
-                  Repeat
-                </ion-col>
-                <ion-col col-4>
-                  {{schedule?.exercise?.repeats}}
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col col-8>
-                  Duration
-                </ion-col>
-                <ion-col col-4>
-                  {{schedule?.exercise?.total_duration}}
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </ion-col>
-          <ion-col ion-col-3>
-            <span *ngIf="schedule?.rating==null" style="max-width: 20%;">No Rating</span>
-            <img src="assets/smiley.png" *ngIf="schedule?.rating==1" style="max-width: 20%;">
-            <img src="assets/neutral.png" *ngIf="schedule?.rating==0" style="max-width: 20%;">
-            <img src="assets/sad.png" *ngIf="schedule?.rating==-1" style="max-width: 20%;">
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </div>
-
-    <!-- <div *ngIf="schedule.exercise && schedule.workout_type != 'Strength'">
-      <ion-item>
-        <ion-row>
-          <ion-col text-wrap>
-            Activity Time:
-          </ion-col>
-          <ion-col text-wrap>
-            {{schedule.exercise.activity_time}} mins
-          </ion-col>
-          <ion-col text-wrap>
-            Activity Speed:
-          </ion-col>
-          <ion-col text-wrap>
-            {{schedule.exercise.activity_speed}} Kmh
-          </ion-col>
-        </ion-row>
-      </ion-item>
-
-      <ion-item>
-        <ion-row>
-          <ion-col text-wrap>
-            Recovery Time
-          </ion-col>
-          <ion-col text-wrap>
-            {{schedule.exercise.recovery_time}} mins
-          </ion-col>
-          <ion-col text-wrap>
-            Recovery Speed:
-          </ion-col>
-          <ion-col text-wrap>
-            {{schedule.exercise.recovery_speed}} Kmh
-          </ion-col>
-        </ion-row>
-      </ion-item>
-
-      <ion-item>
-        <ion-row>
-          <ion-col text-wrap>
-            Repeats:
-          </ion-col>
-          <ion-col text-wrap>
-            {{schedule.exercise.repeats}}
-          </ion-col>
-          <ion-col text-wrap>
-            Total Duration:
-          </ion-col>
-          <ion-col text-wrap>
-            {{schedule.exercise.total_duration}} mins
-          </ion-col>
-        </ion-row>
-      </ion-item>
-
-    </div> -->
-
-
-    <div *ngIf="schedule?.workout_type == 'Strength'">
-      <!-- Add card content here! -->
-      <ion-grid class="add-border height-70">
-        <ion-row>
-          <ion-col col-6>
-            Balance : {{schedule?.exercise?.balance}}
-          </ion-col>
-          <ion-col col-6>
-            Crunches: {{schedule?.exercise?.crunches}}
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-6>
-            Leg Raise: {{schedule?.exercise?.leg_raise_both}}
-          </ion-col>
-          <ion-col col-6>
-            One Leg Raise: {{schedule?.exercise?.one_leg_raise}}
-          </ion-col>
-        </ion-row>
-        <ion-row>
-
-
-          <ion-col col-6>
-            Plank :{{schedule?.exercise?.plank}}
-          </ion-col>
-
-          <ion-col col-6>
-            Push Ups: {{schedule?.exercise?.pushups}}
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-6>
-            Squats: {{schedule?.exercise?.sqauts}}
-          </ion-col>
-          <ion-col col-6>
-            Superman:{{schedule?.exercise?.superman}}
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      <ion-grid class="height-30">
-        <ion-row>
-          <ion-col ion-col-9>
-            <!-- <ion-grid>
-              <ion-row>
-                <ion-col col-8>
-                  Repeat
-                </ion-col>
-                <ion-col col-4>
-                  {{schedule?.exercise?.repeats}}
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col col-8>
-                  Duration
-                </ion-col>
-                <ion-col col-4>
-                  {{schedule?.exercise?.total_duration}}
-                </ion-col>
-              </ion-row>
-            </ion-grid> -->
-          </ion-col>
-          <ion-col ion-col-3 style="margin-left: -61px">
-            <span *ngIf="schedule?.rating==null" style="max-width: 20%;">No Rating</span>
-            <img src="assets/smiley.png" *ngIf="schedule?.rating==1" style="max-width: 20%;">
-            <img src="assets/neutral.png" *ngIf="schedule?.rating==0" style="max-width: 20%;">
-            <img src="assets/sad.png" *ngIf="schedule?.rating==-1" style="max-width: 20%;">
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </div>
-    <!-- <div *ngIf="schedule.workout_type == 'Strength'">
-      <ion-item>
-        <ion-row *ngIf="schedule.exercise.balance && schedule.exercise.balance > 0">
-          <ion-col text-wrap>
-            Balance:
-          </ion-col>
-          <ion-col text-wrap>
-            {{schedule.exercise.balance}} seconds
-          </ion-col>
-        </ion-row>
-        <ion-row *ngIf="schedule.exercise.plank && schedule.exercise.plank > 0">
-          <ion-col text-wrap>
-            Plank:
-          </ion-col>
-          <ion-col text-wrap>
-            {{schedule.exercise.plank}} seconds
-          </ion-col>
-        </ion-row>
-        <ion-row *ngIf="schedule.exercise.pushups && schedule.exercise.pushups > 0">
-          <ion-col text-wrap>
-            Push Ups:
-          </ion-col>
-          <ion-col text-wrap>
-            {{schedule.exercise.pushups}} count
-          </ion-col>
-        </ion-row>
-        <ion-row *ngIf="schedule.exercise.one_leg_raise && schedule.exercise.one_leg_raise > 0">
-          <ion-col text-wrap>
-            One Leg Raise:
-          </ion-col>
-          <ion-col text-wrap>
-            {{schedule.exercise.one_leg_raise}} count
-          </ion-col>
-        </ion-row>
-        <ion-row *ngIf="schedule.exercise.leg_raise_both && schedule.exercise.leg_raise_both > 0">
-          <ion-col text-wrap>
-            Leg Raise Both:
-          </ion-col>
-          <ion-col text-wrap>
-            {{schedule.exercise.leg_raise_both}} count
-          </ion-col>
-        </ion-row>
-        <ion-row *ngIf="schedule.exercise.squats && schedule.exercise.squats > 0">
-          <ion-col text-wrap>
-            Squats:
-          </ion-col>
-          <ion-col text-wrap>
-            {{schedule.exercise.squats}} count
-          </ion-col>
-        </ion-row>
-        <ion-row *ngIf="schedule.exercise.crunches && schedule.exercise.crunches > 0">
-          <ion-col text-wrap>
-            Crunches:
-          </ion-col>
-          <ion-col text-wrap>
-            {{schedule.exercise.crunches}} count
-          </ion-col>
-        </ion-row>
-        <ion-row *ngIf="schedule.exercise.superman && schedule.exercise.superman > 0">
-          <ion-col text-wrap>
-            Superman:
-          </ion-col>
-          <ion-col text-wrap>
-            {{schedule.exercise.superman}} seconds
-          </ion-col>
-        </ion-row>
-      </ion-item>
-
-
-
-    </div> -->
-
-  </ion-list>
-
-  <button (click)="feedback()" *ngIf="schedule && !NotComplete" style="border-radius: 4px;
-  height: 2.8em;
-  font-size: 1.6rem;
-  color: #fff;
-  background-color: #4688F4;
-  margin: 0.4rem 10.2rem;
-  padding: 0 1em;" ion-button>Complete</button>
-
-
-
-  <button (click)="feedback()" *ngIf="schedule && NotComplete" style="border-radius: 4px;
-  height: 2.8em;
-  font-size: 1.6rem;
-  color: #fff;
-  background-color: green;
-  margin: 0.4rem 10.2rem;
-  padding: 0 1em;" ion-button>Completed</button>
-
-  <div *ngIf="!schedule && !NotComplete" style="color:#4688f4;
-  font-size: 17px;
-  margin-left: 10px;">
-
-    <!-- Your Fitness tests are pending.Please contact your coach to schedule the tests -->
+  <div *ngIf="currentUser.initial_test_completed==null" style="font-size: 18px;color: orangered;">
     <br/>
-    <ion-card-title class="center">
+    <br/> Your Fitness tests are pending.Please contact your coach to schedule the tests
+  </div>
+  <div *ngIf="currentUser.initial_test_completed!=null && !schedule">
+    <ion-card-title>
       Your workout schedule needs to be created.
     </ion-card-title>
     <p>
@@ -330,57 +23,231 @@
     <button ion-button full color="primary" (click)="createSchedule()">Create Schedule</button>
 
   </div>
+  <div *ngIf="!newUser">
+    <ion-list inset *ngIf="schedule && schedule.workout_type">
+      <ion-item-divider class="schedule_header" text-wrap text-center [style.backgroundColor]="(schedule.workout_type != 'Strength') ? '#32db64' : '#488aff'">
+        <h2>{{schedule.scheduled_date | date}} : {{schedule.workout_type}}</h2>
+        <ion-icon name='checkbox' item-right *ngIf="schedule.completed==true"></ion-icon>
+        <ion-icon name='warning' item-right *ngIf="schedule.completed==false"></ion-icon>
+      </ion-item-divider>
 
-  <p *ngIf="NotComplete" style="color:#4688f4;
-  font-size: 17px;
-  margin-left: 10px;">You have completed the today's exercise</p>
-  <p *ngIf="!NotComplete &&showSmileys" style="color:#4688f4;
-  font-size: 17px;
-  margin-left: 10px;">Provide feedback by clicking on smilieys</p>
-  <form [formGroup]="slideOneForm" *ngIf="!NotComplete && showSmileys">
+      <!-- 
+            {{schedule?.workout_type}} -->
+      <div *ngIf="schedule?.workout_type != 'Strength'" class="content-height">
+        <ion-grid class="add-border height-70">
+          <ion-row>
+            <ion-col col-4>
 
-    <ion-item-divider text-wrap text-center color="secondary" *ngIf="schedule.rating == 1">
-      Great! Good going & keep it up.
-    </ion-item-divider>
-    <ion-item-divider text-wrap text-center color="light" *ngIf="schedule.rating == 0">
-      Ok. Sure you'll do better next time.
-    </ion-item-divider>
-    <ion-item-divider text-wrap text-center color="danger" *ngIf="schedule.rating == -1">
-      Oh too bad. Tell us what happened ?
-    </ion-item-divider>
-    <ion-item class="center">
-      <ion-row>
-        <ion-col>
-          <img src="assets/smiley.png" (click)="setRating(1)" style="max-width: 60%;" [style.backgroundColor]="schedule.rating == 1 ? 'green' : 'white'"
-          />
-        </ion-col>
-        <ion-col>
-          <img src="assets/neutral.png" (click)="setRating(0)" style="max-width: 60%;" [style.backgroundColor]="schedule.rating == 0 ? 'yellow' : 'white'"
-          />
-        </ion-col>
-        <ion-col>
-          <img src="assets/sad.png" (click)="setRating(-1)" style="max-width: 60%;" [style.backgroundColor]="schedule.rating == -1 ? 'red' : 'white'"
-          />
-        </ion-col>
-      </ion-row>
-    </ion-item>
-  </form>
+            </ion-col>
+
+
+
+            <ion-col col-4>
+              <ion-icon name="clock"></ion-icon> Time
+            </ion-col>
+            <ion-col col-4>
+              <ion-icon name="speedometer"></ion-icon> Speed
+            </ion-col>
+          </ion-row>
+
+
+          <ion-row>
+            <ion-col col-4>
+              <ion-icon name="walk"></ion-icon> Activity
+            </ion-col>
+
+            <ion-col col-4>
+              {{schedule?.exercise?.activity_time}} mins
+            </ion-col>
+            <ion-col col-4>
+              {{schedule?.exercise?.activity_speed}} kph
+            </ion-col>
+
+
+          </ion-row>
+
+          <ion-row>
+            <ion-col col-4>
+              <ion-icon name="man"></ion-icon> Recovery
+            </ion-col>
+
+
+
+            <ion-col col-4>
+              {{schedule?.exercise?.recovery_time}} mins
+            </ion-col>
+            <ion-col col-4>
+              {{schedule?.exercise?.recovery_speed}} kph
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="height-30">
+          <ion-row>
+            <ion-col ion-col-9>
+              <ion-grid>
+                <ion-row>
+                  <ion-col col-8>
+                    Repeat
+                  </ion-col>
+                  <ion-col col-4>
+                    {{schedule?.exercise?.repeats}}
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col col-8>
+                    Duration
+                  </ion-col>
+                  <ion-col col-4>
+                    {{schedule?.exercise?.total_duration}}
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+            <ion-col ion-col-3>
+              <span *ngIf="schedule?.rating==null" style="max-width: 20%;">No Rating</span>
+              <img src="assets/smiley.png" *ngIf="schedule?.rating==1" style="max-width: 20%;">
+              <img src="assets/neutral.png" *ngIf="schedule?.rating==0" style="max-width: 20%;">
+              <img src="assets/sad.png" *ngIf="schedule?.rating==-1" style="max-width: 20%;">
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+
+
+
+
+      <div *ngIf="schedule?.workout_type == 'Strength'">
+        <!-- Add card content here! -->
+        <ion-grid class="add-border height-70">
+          <ion-row>
+            <ion-col col-6>
+              Balance : {{schedule?.exercise?.balance}}
+            </ion-col>
+            <ion-col col-6>
+              Crunches: {{schedule?.exercise?.crunches}}
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-6>
+              Leg Raise: {{schedule?.exercise?.leg_raise_both}}
+            </ion-col>
+            <ion-col col-6>
+              One Leg Raise: {{schedule?.exercise?.one_leg_raise}}
+            </ion-col>
+          </ion-row>
+          <ion-row>
+
+
+            <ion-col col-6>
+              Plank :{{schedule?.exercise?.plank}}
+            </ion-col>
+
+            <ion-col col-6>
+              Push Ups: {{schedule?.exercise?.pushups}}
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-6>
+              Squats: {{schedule?.exercise?.sqauts}}
+            </ion-col>
+            <ion-col col-6>
+              Superman:{{schedule?.exercise?.superman}}
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="height-30">
+          <ion-row>
+            <ion-col ion-col-9>
+              <!-- <ion-grid>
+                      <ion-row>
+                        <ion-col col-8>
+                          Repeat
+                        </ion-col>
+                        <ion-col col-4>
+                          {{schedule?.exercise?.repeats}}
+                        </ion-col>
+                      </ion-row>
+                      <ion-row>
+                        <ion-col col-8>
+                          Duration
+                        </ion-col>
+                        <ion-col col-4>
+                          {{schedule?.exercise?.total_duration}}
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid> -->
+            </ion-col>
+            <ion-col ion-col-3 style="margin-left: -61px">
+              <span *ngIf="schedule?.rating==null" style="max-width: 20%;">No Rating</span>
+              <img src="assets/smiley.png" *ngIf="schedule?.rating==1" style="max-width: 20%;">
+              <img src="assets/neutral.png" *ngIf="schedule?.rating==0" style="max-width: 20%;">
+              <img src="assets/sad.png" *ngIf="schedule?.rating==-1" style="max-width: 20%;">
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+
+
+    </ion-list>
+
+    <div *ngIf="!newUser">
+      <button (click)="feedback()" *ngIf="schedule   && !schedule.completed" style="border-radius: 4px;
+        height: 2.8em;
+        font-size: 1.6rem;
+        color: #fff;
+        background-color: #4688F4;
+        margin: 0.4rem 10.2rem;
+        padding: 0 1em;" ion-button>Complete</button>
+
+
+
+      <button *ngIf="schedule  && schedule.completed " style="border-radius: 4px;
+        height: 2.8em;
+        font-size: 1.6rem;
+        color: #fff;
+        background-color: green;
+        margin: 0.4rem 10.2rem;
+        padding: 0 1em;" ion-button>Completed</button>
+
+    </div>
+
+
+
+    <p *ngIf="NotComplete" style="color:#4688f4;
+          font-size: 17px;
+          margin-left: 10px;" disabled>You have completed the today's exercise</p>
+    <p *ngIf="!NotComplete &&showSmileys" style="color:#4688f4;
+          font-size: 17px;
+          margin-left: 10px;">Provide feedback by clicking on smilieys</p>
+    <form [formGroup]="slideOneForm" *ngIf="!NotComplete && showSmileys">
+
+      <ion-item-divider text-wrap text-center color="secondary" *ngIf="schedule.rating == 1">
+        Great! Good going & keep it up.
+      </ion-item-divider>
+      <ion-item-divider text-wrap text-center color="light" *ngIf="schedule.rating == 0">
+        Ok. Sure you'll do better next time.
+      </ion-item-divider>
+      <ion-item-divider text-wrap text-center color="danger" *ngIf="schedule.rating == -1">
+        Oh too bad. Tell us what happened ?
+      </ion-item-divider>
+      <ion-item class="center">
+        <ion-row>
+          <ion-col>
+            <img src="assets/smiley.png" (click)="setRating(1)" style="max-width: 60%;" [style.backgroundColor]="schedule.rating == 1 ? 'green' : 'white'"
+            />
+          </ion-col>
+          <ion-col>
+            <img src="assets/neutral.png" (click)="setRating(0)" style="max-width: 60%;" [style.backgroundColor]="schedule.rating == 0 ? 'yellow' : 'white'"
+            />
+          </ion-col>
+          <ion-col>
+            <img src="assets/sad.png" (click)="setRating(-1)" style="max-width: 60%;" [style.backgroundColor]="schedule.rating == -1 ? 'red' : 'white'"
+            />
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    </form>
+
+  </div>
+
 </ion-content>
-
-
-
-
-
-<!-- <ion-item class="center">
-      <ion-row>
-        <ion-col>
-          <img src="assets/smiley.png" (click)="setRating(1)" [style.backgroundColor]="schedule.rating == 1 ? 'green' : 'white'"/>
-        </ion-col>
-        <ion-col>
-          <img src="assets/neutral.png" (click)="setRating(0)" [style.backgroundColor]="schedule.rating == 0 ? 'yellow' : 'white'"/>
-        </ion-col>
-        <ion-col>
-          <img src="assets/sad.png" (click)="setRating(-1)" [style.backgroundColor]="schedule.rating == -1 ? 'red' : 'white'"/>
-        </ion-col>
-      </ion-row>
-    </ion-item> -->

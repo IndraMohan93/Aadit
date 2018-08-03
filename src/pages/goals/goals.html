@@ -9,6 +9,15 @@
 
 <ion-content>
 
+
+  <!-- <div *ngIf="!goalHistory">
+    <h3>You have not set up your goals yet. Please set your goals.</h3>
+    <button ion-button full color="primary" (click)="createGoals()">Set up your Goals</button>
+  </div> -->
+
+  <!-- <div *ngIf="goals && goalHistory"> -->
+
+
   <ion-list inset>
 
     <button ion-item *ngFor="let goal of goals" (click)=getGoalDetails(goal)>
@@ -52,5 +61,6 @@
     </button>
 
   </ion-list>
+  <!-- </div> -->
 
 </ion-content>

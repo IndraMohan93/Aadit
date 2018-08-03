@@ -8,6 +8,7 @@ import { Angular2TokenService } from 'angular2-token';
 import { MedicalValidator } from './medical-validator'
 import { TermsPage } from '../static/terms';
 import { CheckboxValidator } from '../../providers/checkbox-validator';
+import { HomePage } from '../home/home';
 
 @Component({
   selector: 'medical-form',
@@ -20,6 +21,7 @@ export class MedicalForm {
   slideOneForm: FormGroup;
 
   submitAttempt: boolean = false;
+  currentUser: any;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -94,7 +96,7 @@ export class MedicalForm {
 
 
   save() {
-    
+
     this.respUtility.trackEvent("Medical", "Save", "click");
     this.submitAttempt = true;
     //console.log(this.medical);
@@ -112,8 +114,9 @@ export class MedicalForm {
       if (this.medical["id"]) {
         this.medicalApi.updateMedical(this.medical).subscribe(
           medical => {
+            this.currentUser.medical_setup = true;
             this.respUtility.showSuccess('Medical saved successfully.');
-            this.navCtrl.push(TermsPage);
+            this.navCtrl.popToRoot();
           },
           error => {
             this.respUtility.showFailure(error);
@@ -125,7 +128,7 @@ export class MedicalForm {
         this.medicalApi.createMedical(this.medical).subscribe(
           medical => {
             this.respUtility.showSuccess('Medical saved successfully.');
-            this.navCtrl.push(TermsPage);
+            this.navCtrl.push(HomePage);
           },
           error => {
             this.respUtility.showFailure(error);
@@ -135,7 +138,7 @@ export class MedicalForm {
         );
       }
     }
-   
+
   }
 
 

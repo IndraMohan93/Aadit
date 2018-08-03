@@ -9,6 +9,7 @@ import { ScheduleValidator } from './schedule-validator'
 import { TermsPage } from '../static/terms';
 import { CheckboxValidator } from '../../providers/checkbox-validator';
 import { Workouts } from '../workouts/workouts';
+import { LoginProvider } from '../../providers/login-provider';
 
 @Component({
   selector: 'schedule-create',
@@ -36,7 +37,7 @@ export class ScheduleCreate {
     private tokenService: Angular2TokenService,
     private elementRef: ElementRef,
     private renderer: Renderer,
-    private keyboard: Keyboard) {
+    private keyboard: Keyboard, private loginProvider: LoginProvider) {
 
     this.fitness_test_id = this.navParams.data["fitness_test_id"];
 
@@ -69,11 +70,15 @@ export class ScheduleCreate {
           this.respUtility.showSuccess('Schedule saved successfully.');
           this.navCtrl.pop();
           this.respUtility.showSuccess('Schedule will be generated in a few mins. Please check back in 5 mins.');
-          setTimeout(this.scheduleApi.getSchedules(this.fitness_test_id).subscribe(
-            schedules => {
-              console.log("new schedules", schedules);
-              this.newSchedules = schedules;
-            }), 50000);
+          //setTimeout(() => {
+          this.logout();
+          //}, 5000);
+          // setTimeout(this.scheduleApi.getSchedules(this.fitness_test_id).subscribe(
+          //   schedules => {
+          //     console.log("new schedules", schedules);
+          //     this.newSchedules = schedules;
+          //   }), 5000);
+          //setTimeout({logout()},5000);
 
         },
         error => {
@@ -84,6 +89,11 @@ export class ScheduleCreate {
       );
 
     });
+  }
+
+  logout() {
+    //this.respUtility.trackEvent("User", "Logout", "click");
+    this.loginProvider.logout();
   }
 
 }

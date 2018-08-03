@@ -10,7 +10,7 @@ import { Keyboard } from '@ionic-native/keyboard';
 import { CalendarModule } from "ion2-calendar";
 import { SentryErrorHandler } from '../services/sentry-errorhandler'
 import { CodePush } from '@ionic-native/code-push';
-
+import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/home/tabs';
@@ -206,7 +206,8 @@ import { ScheduleApi } from '../providers/schedule-api';
     Transfer,
     HomeEvents,
     { provide: ErrorHandler, useClass: SentryErrorHandler }
-  ]
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })
 export class AppModule { }
 

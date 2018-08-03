@@ -4,6 +4,7 @@ import { ScheduleApi } from '../../providers/schedule-api';
 import { ResponseUtility } from '../../providers/response-utility';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as _ from 'lodash';
+import { Angular2TokenService } from 'angular2-token';
 import { ScheduleForm } from './schedule-form';
 
 import { ScheduleCreate } from './schedule-create';
@@ -25,6 +26,8 @@ export class ScheduleDetails {
   submitAttempt: boolean = false;
   showSmileys: boolean;
   NotComplete: boolean = false;
+  currentUser: any;
+  newUser: boolean = false;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -32,6 +35,7 @@ export class ScheduleDetails {
     public scheduleApi: ScheduleApi,
     public alertController: AlertController,
     public toastController: ToastController,
+    public tokenService: Angular2TokenService,
     public loadingController: LoadingController,
     public respUtility: ResponseUtility) {
     this.schedule = this.navParams.data;
@@ -43,12 +47,17 @@ export class ScheduleDetails {
       comments: [],
     });
 
+    this.currentUser = tokenService.currentUserData;
+    console.log("this.user inside schedule details page", this.currentUser);
 
   }
 
   ionViewWillEnter() {
     //this.submitAttempt = false;
     this.showSmileys = false;
+    if (this.currentUser.initial_test_completed != true) {
+      this.newUser = true;
+    }
     console.log('ionViewWillEnter ScheduleDetails');
     this.respUtility.trackView("ScheduleDetails");
   }
@@ -169,7 +178,9 @@ export class ScheduleDetails {
     console.log(`Set rating to ${val}`);
     if (val != -1 || val == -1) { //val != -1 
       setTimeout(() => {
+        this.schedule.completed = true;
         this.save();
+
       }, 1000);
     }
   }

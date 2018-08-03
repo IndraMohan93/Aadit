@@ -35,10 +35,10 @@ export class FoodLogForm {
     this.food_log = this.navParams.data;
     this.food_log["intake_date"] = moment(this.food_log["intake_date"]).format();
 
-    console.log(this.food_log);  
+    console.log(this.food_log);
 
     this.slideOneForm = formBuilder.group({
-      meal: ['', Validators.compose([Validators.maxLength(15), Validators.required])],
+      //meal: ['', Validators.compose([Validators.maxLength(15), Validators.required])],
       intake_date: ['', Validators.compose([Validators.required])],
       details: ['', Validators.compose([Validators.required])],
     });
@@ -67,7 +67,7 @@ export class FoodLogForm {
     else {
       this.submitAttempt = false;
       loader.present();
-      
+
       this.food_log["intake_date"] = moment(this.food_log["intake_date"]).toISOString();
 
       if (this.food_log["id"]) {

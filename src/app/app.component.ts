@@ -184,7 +184,7 @@ export class MyApp {
         this.events.subscribe('user:login:success', () => {
           console.log("AppComponent: user:login:success");
           this.currentUser = this.tokenService.currentUserData;
-
+          console.log("currentUser", this.currentUser);
           this.ga.setUserId(this.currentUser["id"]); // Set the user ID using signed-in user_id.
 
           if (this.currentUser.initial_test_completed == true) {
@@ -203,15 +203,29 @@ export class MyApp {
             ];
 
           } else {
-            this.pages = [
-              // { title: 'Goals', component: Goals, params: {} },
-              // { title: 'Medicals', component: MedicalForm, params: { load_from_server: true } },
-              // { title: 'Tests', component: FitnessTests, params: {} },
-              // { title: 'About Us', component: AboutPage, params: {} },
-              // { title: 'Terms & Conditions', component: TermsPage, params: {} },
-              { title: 'Contact Us', component: ContactPage, params: {} },
-              // { title: 'Help', component: HelpPage, params: {} },
-            ];
+
+            if (this.currentUser.goals_setup != true || this.currentUser.medical_setup != true) {
+              this.pages = [
+                { title: 'Goals', component: GoalForm, params: {} },
+                { title: 'Medicals', component: MedicalForm, params: {} },
+                // { title: 'Tests', component: FitnessTests, params: {} },
+                // { title: 'About Us', component: AboutPage, params: {} },
+                // { title: 'Terms & Conditions', component: TermsPage, params: {} },
+                { title: 'Contact Us', component: ContactPage, params: {} },
+                // { title: 'Help', component: HelpPage, params: {} },
+              ];
+            } else {
+              this.pages = [
+                { title: 'Goals', component: Goals, params: {} },
+                { title: 'Medicals', component: MedicalForm, params: { load_from_server: true } },
+                // { title: 'Tests', component: FitnessTests, params: {} },
+                // { title: 'About Us', component: AboutPage, params: {} },
+                // { title: 'Terms & Conditions', component: TermsPage, params: {} },
+                { title: 'Contact Us', component: ContactPage, params: {} },
+                // { title: 'Help', component: HelpPage, params: {} },
+              ];
+            }
+
 
           }
 

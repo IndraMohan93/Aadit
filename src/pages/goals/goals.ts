@@ -13,7 +13,8 @@ export class Goals {
   goals: any;
   goal: any;
 
-  
+  goalHistory: boolean;
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public loadingController: LoadingController,
@@ -22,6 +23,8 @@ export class Goals {
   }
 
   ionViewWillEnter() {
+
+    this.goalHistory = false;
     console.log('ionViewWillEnter Goals');
     this.respUtility.trackView("Goals");
     let loader = this.loadingController.create({
@@ -33,6 +36,7 @@ export class Goals {
     this.goalApi.getGoals().subscribe(
       goals => {
         this.goals = goals;
+        this.goalHistory = true;;
         console.log("Loaded goals");
         console.log(goals);
       },
@@ -40,6 +44,10 @@ export class Goals {
       () => { loader.dismiss(); }
     );
 
+  }
+
+  createGoals() {
+    this.navCtrl.push(GoalForm);
   }
 
   getGoalDetails(goal) {

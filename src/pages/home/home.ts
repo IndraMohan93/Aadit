@@ -66,7 +66,7 @@ export class HomePage implements Menu {
 
   ionViewWillEnter() {
     console.log('ionViewWillEnter HomePage ');
-    console.log("in home page", this.currentUser, this.scheduleDetails, this.currentUser.accept_terms, this.currentUser.goals_setup);
+    // console.log("in home page", this.currentUser, this.scheduleDetails, this.currentUser.accept_terms, this.currentUser.goals_setup);
     if (this.currentUser && this.scheduleDetails) {
       // Ensure that the scheduleDetails available are shown
       this.scheduleDetails.loadTodaysSchedule();
@@ -80,7 +80,7 @@ export class HomePage implements Menu {
     // }
     if (this.currentUser.goals_setup != true) {
       // The terms have changed - we need to get him to accept the terms again
-      this.currentUser.goals_setup = true;
+      //this.currentUser.goals_setup = true;
       this.respUtility.showWarning("Please setup your goals");
       this.setup_goals();
     }

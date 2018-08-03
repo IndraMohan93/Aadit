@@ -18,7 +18,7 @@ export class TabsPage {
     scheduleRoot = Schedules;
     loginRoot = Login;
     currentUser: any;
-
+    newUser: boolean = true;
     schedule: boolean;
 
     constructor(public respUtility: ResponseUtility,
@@ -27,6 +27,10 @@ export class TabsPage {
         this.currentUser = tokenService.currentUserData;
         this.events.subscribe('user:login:success', () => {
             this.currentUser = tokenService.currentUserData;
+            // if (this.currentUser.initial_test_completed != true) {
+            //     this.newUser = true;
+
+            // }
             this.schedule = this.currentUser.schedule;
         });
         this.events.subscribe('user:logout:success', () => {
