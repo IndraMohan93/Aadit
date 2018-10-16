@@ -82,6 +82,7 @@ import { LoginProvider } from '../providers/login-provider';
 import { HomeEvents } from '../providers/home-events';
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
 import { ScheduleApi } from '../providers/schedule-api';
+import { GoogleDriveProvider } from '../providers/google-sheets/google-sheet.provider';
 
 
 
@@ -205,7 +206,8 @@ import { ScheduleApi } from '../providers/schedule-api';
     FilePath,
     Transfer,
     HomeEvents,
-    { provide: ErrorHandler, useClass: SentryErrorHandler }
+    { provide: ErrorHandler, useClass: SentryErrorHandler },
+    GoogleDriveProvider
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })

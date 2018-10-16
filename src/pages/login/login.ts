@@ -16,7 +16,7 @@ import { OAuthService } from './oauth.service';
 import { OAuthProfilePage } from './profile/oauth-profile.page';
 import { HomePage } from '../home/home';
 //import { Login } from '../../login/login';
-
+import { GoogleDriveProvider } from '../../providers/google-sheets/google-sheet.provider';
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
@@ -45,14 +45,16 @@ export class Login {
     private config: Config,
     private loginProvider: LoginProvider,
     private userApi: UserApi,
+    private gd: GoogleDriveProvider,
     private storage: Storage, oauthService: OAuthService, nav: NavController) {
-
+      
     this.oauthService = oauthService;
     this.nav = nav;
     this.slideOneForm = formBuilder.group({
       password: ['', Validators.compose([Validators.minLength(6), Validators.required])],
       email: ['', Validators.compose([Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'), Validators.required])]
     });
+  //  this.gd.load();
   }
 
 
