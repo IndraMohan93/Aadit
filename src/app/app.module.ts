@@ -19,6 +19,8 @@ import { PasswordReset } from '../pages/login/password-reset'
 import { LoginModule } from '../pages/login/login.module';
 import { IonicStorageModule } from '@ionic/storage';
 import { Angular2TokenService } from 'angular2-token';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuth } from 'angularfire2/auth';
 // Import ionic2-rating module
 import { Ionic2RatingModule } from 'ionic2-rating';
 
@@ -83,8 +85,7 @@ import { HomeEvents } from '../providers/home-events';
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
 import { ScheduleApi } from '../providers/schedule-api';
 import { GoogleDriveProvider } from '../providers/google-sheets/google-sheet.provider';
-
-
+import { FIREBASE_AUTH_CONFIG } from './app.firebase.config';
 
 @NgModule({
   declarations: [
@@ -137,7 +138,8 @@ import { GoogleDriveProvider } from '../providers/google-sheets/google-sheet.pro
     Ionic2RatingModule,
     LoginModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    AngularFireModule.initializeApp(FIREBASE_AUTH_CONFIG)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -200,6 +202,7 @@ import { GoogleDriveProvider } from '../providers/google-sheets/google-sheet.pro
     SplashScreen,
     Keyboard,
     Angular2TokenService,
+    AngularFireAuth,
     Camera,
     Diagnostic,
     File,

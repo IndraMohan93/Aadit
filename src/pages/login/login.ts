@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, Events } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TokenService } from '../../providers/token-service';
 import { Angular2TokenService } from 'angular2-token';
@@ -17,10 +17,12 @@ import { OAuthProfilePage } from './profile/oauth-profile.page';
 import { HomePage } from '../home/home';
 //import { Login } from '../../login/login';
 import { GoogleDriveProvider } from '../../providers/google-sheets/google-sheet.provider';
+import { AngularFireAuth } from 'angularfire2/auth';
+
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
-  providers: [OAuthService]
+  providers: [OAuthService, AngularFireAuth]
 })
 export class Login {
 
@@ -41,13 +43,14 @@ export class Login {
     public formBuilder: FormBuilder,
     public respUtility: ResponseUtility,
     public loadingController: LoadingController,
+    public events: Events,
     private tokenService: Angular2TokenService,
+    private afAuth: AngularFireAuth,
     private config: Config,
     private loginProvider: LoginProvider,
     private userApi: UserApi,
     private gd: GoogleDriveProvider,
     private storage: Storage, oauthService: OAuthService, nav: NavController) {
-      
     this.oauthService = oauthService;
     this.nav = nav;
     this.slideOneForm = formBuilder.group({
@@ -71,10 +74,18 @@ export class Login {
 
   // }
 
-  login() {
+  async login() {
     this.respUtility.trackEvent("User", "Login", "click");
-    this.loginProvider.login(this.email, this.password, this.navCtrl);
-
+    this.afAuth.auth.signInWithEmailAndPassword(this.email,this.password).then(
+      (response) => {
+        this.events.publish('user:login:success');
+        console.log(response);
+      }
+    ).catch( (error) => {
+      this.events.publish('user:login:failed');
+      console.log(error);
+    });
+    // this.loginProvider.login(this.email, this.password, this.navCtrl);
   }
   public signin(source: string) {
     this.oauthService.login(source)
