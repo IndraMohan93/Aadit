@@ -26,7 +26,7 @@ export class ScheduleDetails {
   submitAttempt: boolean = false;
   showSmileys: boolean;
   NotComplete: boolean = false;
-  currentUser: any;
+  currentUser: any = { id: 123, goals_setup: true, provider: 'Google', uid: 'indrathota1993', name: 'Indra Mohan Thota', nickname: 'Indra', image: '', email: 'indrathota1993@gmail.com'};
   newUser: boolean = false;
 
   constructor(public navCtrl: NavController,
@@ -47,7 +47,7 @@ export class ScheduleDetails {
       comments: [],
     });
 
-    this.currentUser = tokenService.currentUserData;
+    //this.currentUser = tokenService.currentUserData;
     console.log("this.user inside schedule details page", this.currentUser);
 
   }
@@ -69,19 +69,20 @@ export class ScheduleDetails {
 
     loader.present();
 
-    this.scheduleApi.getScheduleDetails(this.schedule.id).subscribe(
-      response => {
-        //this.respUtility.showSuccess("Loaded Schedule");
-        this.schedule = response;
-        console.log("Loaded schedule");
-        console.log(this.schedule);
-      },
-      error => {
-        this.respUtility.showFailure(error);
-        loader.dismiss();
-      },
-      () => { loader.dismiss(); }
-    );
+    // this.scheduleApi.getScheduleDetails(this.schedule.id).subscribe(
+    //   response => {
+    //     //this.respUtility.showSuccess("Loaded Schedule");
+    //     this.schedule = response;
+    //     console.log("Loaded schedule");
+    //     console.log(this.schedule);
+    //   },
+    //   error => {
+    //     this.respUtility.showFailure(error);
+    //     loader.dismiss();
+    //   },
+    //   () => { loader.dismiss(); }
+    // );
+    loader.dismiss();
   }
 
 
@@ -93,20 +94,21 @@ export class ScheduleDetails {
 
     loader.present();
 
-    this.scheduleApi.getTodaysScheduleDetails().subscribe(
-      response => {
-        //this.respUtility.showSuccess("Loaded Schedule");
-        this.schedule = response;
-        console.log("Loaded todays schedule");
-        console.log(this.schedule);
-        this.content.resize();
-      },
-      error => {
-        this.respUtility.showFailure(error);
-        loader.dismiss();
-      },
-      () => { loader.dismiss(); }
-    );
+    // this.scheduleApi.getTodaysScheduleDetails().subscribe(
+    //   response => {
+    //     //this.respUtility.showSuccess("Loaded Schedule");
+    //     this.schedule = response;
+    //     console.log("Loaded todays schedule");
+    //     console.log(this.schedule);
+    //     this.content.resize();
+    //   },
+    //   error => {
+    //     this.respUtility.showFailure(error);
+    //     loader.dismiss();
+    //   },
+    //   () => { loader.dismiss(); }
+    // );
+    loader.dismiss();
   }
 
 

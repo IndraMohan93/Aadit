@@ -16,7 +16,7 @@ import { OAuthService } from './oauth.service';
 import { OAuthProfilePage } from './profile/oauth-profile.page';
 import { HomePage } from '../home/home';
 //import { Login } from '../../login/login';
-import { GoogleDriveProvider } from '../../providers/google-sheets/google-sheet.provider';
+import { GoogleSheetProvider } from '../../providers/google-sheets/google-sheet.provider';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
@@ -49,7 +49,7 @@ export class Login {
     private config: Config,
     private loginProvider: LoginProvider,
     private userApi: UserApi,
-    private gd: GoogleDriveProvider,
+    private gd: GoogleSheetProvider,
     private storage: Storage, oauthService: OAuthService, nav: NavController) {
     this.oauthService = oauthService;
     this.nav = nav;

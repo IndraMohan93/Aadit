@@ -30,7 +30,7 @@ export class HomeEvents {
             console.log("HomeEvents: user:login:success");
             for (let menu of this.menus) {
                 console.log("setting user for ", menu);
-                menu.currentUser = this.tokenService.currentUserData;
+                menu.currentUser = { id: 123, goals_setup: true, provider: 'Google', uid: 'indrathota1993', name: 'Indra Mohan Thota', nickname: 'Indra', image: '', email: 'indrathota1993@gmail.com'};
                 menu.displayMsgs();
             }
         });

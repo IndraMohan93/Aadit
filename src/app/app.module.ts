@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { File } from '@ionic-native/file';
@@ -21,6 +22,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { Angular2TokenService } from 'angular2-token';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { GoogleApiModule, GoogleApiService, GoogleAuthService, NgGapiClientConfig, NG_GAPI_CONFIG, GoogleApiConfig } from "ng-gapi";
 // Import ionic2-rating module
 import { Ionic2RatingModule } from 'ionic2-rating';
 
@@ -84,8 +86,10 @@ import { LoginProvider } from '../providers/login-provider';
 import { HomeEvents } from '../providers/home-events';
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
 import { ScheduleApi } from '../providers/schedule-api';
-import { GoogleDriveProvider } from '../providers/google-sheets/google-sheet.provider';
+import { GoogleSheetProvider } from '../providers/google-sheets/google-sheet.provider';
+import { SheetResourceProvider } from '../providers/google-sheets/sheet-resource.provider';
 import { FIREBASE_AUTH_CONFIG } from './app.firebase.config';
+import { gapiClientConfig } from './app.googleapi.config';
 
 @NgModule({
   declarations: [
@@ -132,6 +136,7 @@ import { FIREBASE_AUTH_CONFIG } from './app.firebase.config';
   imports: [
     BrowserModule,
     HttpModule,
+    HttpClientModule,
     RouterModule,
     MomentModule,
     CalendarModule,
@@ -139,7 +144,11 @@ import { FIREBASE_AUTH_CONFIG } from './app.firebase.config';
     LoginModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
-    AngularFireModule.initializeApp(FIREBASE_AUTH_CONFIG)
+    AngularFireModule.initializeApp(FIREBASE_AUTH_CONFIG),
+    GoogleApiModule.forRoot({
+      provide: NG_GAPI_CONFIG,
+      useValue: gapiClientConfig
+    }),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -210,7 +219,8 @@ import { FIREBASE_AUTH_CONFIG } from './app.firebase.config';
     Transfer,
     HomeEvents,
     { provide: ErrorHandler, useClass: SentryErrorHandler },
-    GoogleDriveProvider
+    GoogleSheetProvider,
+    SheetResourceProvider
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })

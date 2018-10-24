@@ -17,7 +17,7 @@ export class TabsPage {
     foodLogRoot = FoodLogs;
     scheduleRoot = Schedules;
     newUser: boolean = false;
-    currentUser: any;
+    currentUser: any = { id: 123, goals_setup: true, provider: 'Google', uid: 'indrathota1993', name: 'Indra Mohan Thota', nickname: 'Indra', image: '', email: 'indrathota1993@gmail.com'};
     schedule: boolean;
 
     constructor(public respUtility: ResponseUtility,
@@ -30,7 +30,7 @@ export class TabsPage {
                 this.newUser = true;
 
             }
-            this.schedule = this.currentUser.schedule;
+            this.schedule = false;
         });
         this.events.subscribe('user:logout:success', () => {
             console.log("Hiding tabs as user logged out");

@@ -1,3 +1,4 @@
+import { Login } from './../login/login';
 import { IonicPage, NavController, NavParams, AlertController, ToastController, LoadingController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, ViewChild, ElementRef, Renderer } from '@angular/core';
@@ -10,6 +11,9 @@ import { TermsPage } from '../static/terms';
 import { CheckboxValidator } from '../../providers/checkbox-validator';
 import { CompanyApi } from '../../providers/company-api';
 import { GoalForm } from '../goals/goal-form';
+import { GoogleSheetProvider } from './../../providers/google-sheets/google-sheet.provider';
+import { SheetResourceProvider } from '../../providers/google-sheets/sheet-resource.provider';
+import { AngularFireAuth } from 'angularfire2/auth';
 @Component({
   selector: 'page-user-form',
   templateUrl: 'user-form.html',
@@ -28,6 +32,11 @@ export class UserForm {
   confirm_password;
   companies: any;
 
+  googleLoginButtonId = "google-login-button";
+  userAuthToken = null;
+  userDisplayName = "empty";
+  auth2: any;
+  
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public formBuilder: FormBuilder,
@@ -36,7 +45,10 @@ export class UserForm {
     public respUtility: ResponseUtility,
     public loadingController: LoadingController,
     private tokenService: Angular2TokenService,
+    private afAuth: AngularFireAuth,
     private elementRef: ElementRef,
+    private gSheetService: GoogleSheetProvider,
+    private sheetService: SheetResourceProvider,
     private renderer: Renderer,
     private keyboard: Keyboard) {
 
@@ -74,7 +86,9 @@ export class UserForm {
       this.slideOneForm.controls["confirm_password"].clearValidators();
       console.log("Disabled password", this.slideOneForm.controls.password.disabled);
     }
-
+    if(!gSheetService.isUserSignedIn()){
+      this.gSheetService.signIn();
+    }
   }
 
   onTermsChecked($event) {
@@ -114,7 +128,6 @@ export class UserForm {
     let loader = this.loadingController.create({
       content: 'Saving ...'
     });
-
     if (this.slideOneForm.invalid) {
       //this.signupSlider.slideTo(0);
       console.log("Invalid form ", this.slideOneForm.errors);
@@ -122,48 +135,57 @@ export class UserForm {
     else {
       this.submitAttempt = false;
       loader.present();
-      if (this.user["id"]) {
-        this.userApi.updateUser(this.user).subscribe(
-          user => {
-            this.respUtility.showSuccess('User saved successfully.');
-            this.navCtrl.pop();
-            //  this.navCtrl.push(GoalForm, {})
-          },
-          error => {
-            this.respUtility.showFailure(error);
+      console.log(this.slideOneForm.controls["email"].value,this.slideOneForm.controls["password"].value);
+      this.afAuth.auth.createUserWithEmailAndPassword(
+        this.slideOneForm.controls["email"].value,
+        this.slideOneForm.controls["email"].value
+        ).then((response) => {
+          if(response.additionalUserInfo.isNewUser) {
+            this.sheetService.saveUser(this.user,this.gSheetService.getToken(),'1VAtBwQY9RdK6TQE_XhBmOkJwNMiz1lf9CcVNdnecUjo').subscribe((response) => {
+              console.log(response);
+              loader.dismiss();
+              this.navCtrl.push(Login);
+            });
+          }
+          else {
+            console.log('User name already exits');
             loader.dismiss();
-          },
-          () => { loader.dismiss(); }
-        );
-      } else {
-        this.register(this.user, loader);
-      }
+            this.navCtrl.push(Login);
+          }
+        }, (error) => {
+          console.log(error);
+          loader.dismiss();
+          this.navCtrl.push(Login);
+        });
     }
   }
-
   register(user, loader) {
     this.respUtility.trackEvent("User", "Register", "click");
-    this.tokenService.registerAccount(user).subscribe(
-      res => {
-        console.log(res);
-        this.respUtility.showSuccess("Please check your email for verification link. Verfiy your email & then login.");
-        this.navCtrl.popToRoot();
-        //this.navCtrl.push(GoalForm, {})
-      },
-      error => {
-        console.log(error);
-        if (error.status == 401) {
-          let body = JSON.parse(error._body);
-          this.respUtility.showWarning(body.errors);
-        } else {
-          this.respUtility.showFailure(error);
-          loader.dismiss();
-        }
-      },
-      () => { loader.dismiss(); }
-    );
+    // this.tokenService.registerAccount(user).subscribe(
+    //   res => {
+    //     console.log(res);
+    //     this.respUtility.showSuccess("Please check your email for verification link. Verfiy your email & then login.");
+    //     this.navCtrl.popToRoot();
+    //     //this.navCtrl.push(GoalForm, {})
+    //   },
+    //   error => {
+    //     console.log(error);
+    //     if (error.status == 401) {
+    //       let body = JSON.parse(error._body);
+    //       this.respUtility.showWarning(body.errors);
+    //     } else {
+    //       this.respUtility.showFailure(error);
+    //       loader.dismiss();
+    //     }
+    //   },
+    //   () => { loader.dismiss(); }
+    // );
   }
-
+  appendPre(message) {
+    var pre = document.getElementById('output');
+    var textContent = document.createTextNode(message + '\n');
+    pre.appendChild(textContent);
+  }
   show_terms() {
     this.navCtrl.push(TermsPage);
   }

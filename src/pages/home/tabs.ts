@@ -24,14 +24,13 @@ export class TabsPage {
     constructor(public respUtility: ResponseUtility,
         public events: Events,
         public tokenService: Angular2TokenService) {
-        this.currentUser = tokenService.currentUserData;
+        //this.currentUser = tokenService.currentUserData;
         this.events.subscribe('user:login:success', () => {
-            this.currentUser = tokenService.currentUserData;
-            // if (this.currentUser.initial_test_completed != true) {
-            //     this.newUser = true;
-
-            // }
-            this.schedule = this.currentUser.schedule;
+            this.currentUser = { id: 123, goals_setup: true,initial_test_completed: false, provider: 'Google', uid: 'indrathota1993', name: 'Indra Mohan Thota', nickname: 'Indra', image: '', email: 'indrathota1993@gmail.com'};
+            if (this.currentUser.initial_test_completed != true) {
+                this.newUser = true;
+            }
+            this.schedule = false;
         });
         this.events.subscribe('user:logout:success', () => {
             console.log("Hiding tabs as user logged out");

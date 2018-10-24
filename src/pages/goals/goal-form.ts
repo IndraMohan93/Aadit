@@ -19,7 +19,7 @@ export class GoalForm {
   goal: {};
 
   slideOneForm: FormGroup;
-  currentUser: any;
+  currentUser: any = { id: 123, goals_setup: true, provider: 'Google', uid: 'indrathota1993', name: 'Indra Mohan Thota', nickname: 'Indra', image: '', email: 'indrathota1993@gmail.com'};
   submitAttempt: boolean = false;
 
   constructor(public navCtrl: NavController,
@@ -35,7 +35,7 @@ export class GoalForm {
 
     this.goal = this.navParams.data;
     console.log(this.goal);
-    this.currentUser = tokenService.currentUserData;
+    //this.currentUser = tokenService.currentUserData;
 
     console.log("inside goal form", this.currentUser);
     this.slideOneForm = formBuilder.group({

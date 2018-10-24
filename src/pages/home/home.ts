@@ -26,7 +26,7 @@ export class HomePage implements Menu {
 
   @ViewChild(ScheduleDetails) scheduleDetails: ScheduleDetails;
 
-  currentUser: any;
+  currentUser: any = { id: 123, goals_setup: true, provider: 'Google', uid: 'indrathota1993', name: 'Indra Mohan Thota', nickname: 'Indra', image: '', email: 'indrathota1993@gmail.com'};
   registerCareHome = false;
   message: any;
   schedule: any;
@@ -40,7 +40,7 @@ export class HomePage implements Menu {
 
     this.homeEvents.registerMenu(this);
     console.log("this.user", tokenService.currentUserData);
-    this.currentUser = tokenService.currentUserData;
+    // this.currentUser = tokenService.currentUserData;
     console.log("this.user", this.scheduleDetails);
     // this.events.subscribe('user:login:success', () => {
     //   console.log("this.user", tokenService.currentUserData);
