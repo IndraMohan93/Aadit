@@ -18,11 +18,12 @@ import { HomePage } from '../home/home';
 //import { Login } from '../../login/login';
 import { GoogleSheetProvider } from '../../providers/google-sheets/google-sheet.provider';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
-  providers: [OAuthService, AngularFireAuth]
+  providers: [OAuthService, AngularFireAuth, AngularFireDatabase]
 })
 export class Login {
 
@@ -35,7 +36,8 @@ export class Login {
   private nav: NavController;
   email: any;
   password: any;
-
+  message: any;
+  status: any;
   currentUser: any;
   slideOneForm: FormGroup;
   constructor(public navCtrl: NavController,
@@ -46,6 +48,7 @@ export class Login {
     public events: Events,
     private tokenService: Angular2TokenService,
     private afAuth: AngularFireAuth,
+    private afDb: AngularFireDatabase,
     private config: Config,
     private loginProvider: LoginProvider,
     private userApi: UserApi,
@@ -64,6 +67,8 @@ export class Login {
   ionViewDidLoad() {
     console.log('ionViewDidLoad Login');
     this.respUtility.trackView("Login");
+    this.message = this.navParams.get('message');
+    this.status = this.navParams.get('status');
   }
 
   // ionViewWillEnter() {
@@ -78,7 +83,13 @@ export class Login {
     this.respUtility.trackEvent("User", "Login", "click");
     this.afAuth.auth.signInWithEmailAndPassword(this.email,this.password).then(
       (response) => {
-        this.events.publish('user:login:success');
+        this.afDb.list(`/profile/${response.user.uid}`)
+                 .valueChanges()
+                 .subscribe(
+                   (data) => {
+                      this.events.publish('user:login:success');
+                      this.navCtrl.push(HomePage);
+                    });
         console.log(response);
       }
     ).catch( (error) => {
@@ -94,9 +105,6 @@ export class Login {
         error => alert(error)
       );
   }
-
-
-
 
   register() {
     this.respUtility.trackEvent("User", "Register", "click");

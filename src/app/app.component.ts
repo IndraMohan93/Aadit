@@ -179,13 +179,13 @@ export class MyApp {
         this.initPushNotification();
 
 
-        this.currentUser = this.tokenService.currentUserData;
+        this.currentUser = { id: 123, goals_setup: true,initial_test_completed: false, provider: 'Google', uid: 'indrathota1993', name: 'Indra Mohan Thota', nickname: 'Indra', image: '', email: 'indrathota1993@gmail.com'};
 
         this.events.subscribe('user:login:success', () => {
           console.log("AppComponent: user:login:success");
-          this.currentUser = this.tokenService.currentUserData;
+          this.currentUser = { id: 123,medical_setup: false, goals_setup: true,initial_test_completed: false, provider: 'Google', uid: 'indrathota1993', name: 'Indra Mohan Thota', nickname: 'Indra', image: '', email: 'indrathota1993@gmail.com'};
           console.log("currentUser", this.currentUser);
-          this.ga.setUserId(this.currentUser["id"]); // Set the user ID using signed-in user_id.
+          // this.ga.setUserId(this.currentUser["id"]); // Set the user ID using signed-in user_id.
 
           if (this.currentUser.initial_test_completed == true) {
             this.pages = [

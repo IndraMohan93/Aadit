@@ -1,3 +1,4 @@
+import { Push } from '@ionic-native/push';
 import { Login } from './../login/login';
 import { IonicPage, NavController, NavParams, AlertController, ToastController, LoadingController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -14,9 +15,12 @@ import { GoalForm } from '../goals/goal-form';
 import { GoogleSheetProvider } from './../../providers/google-sheets/google-sheet.provider';
 import { SheetResourceProvider } from '../../providers/google-sheets/sheet-resource.provider';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase, AngularFireList, AngularFireObject } from 'angularfire2/database';
+import { AngularFirestore } from 'angularfire2/firestore';
 @Component({
   selector: 'page-user-form',
   templateUrl: 'user-form.html',
+  providers: [AngularFireDatabase,AngularFirestore]
 })
 export class UserForm {
 
@@ -36,6 +40,7 @@ export class UserForm {
   userAuthToken = null;
   userDisplayName = "empty";
   auth2: any;
+  authorizedUsers: AngularFireList<any[]>;
   
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -46,6 +51,7 @@ export class UserForm {
     public loadingController: LoadingController,
     private tokenService: Angular2TokenService,
     private afAuth: AngularFireAuth,
+    private afDb: AngularFireDatabase,
     private elementRef: ElementRef,
     private gSheetService: GoogleSheetProvider,
     private sheetService: SheetResourceProvider,
@@ -135,30 +141,37 @@ export class UserForm {
     else {
       this.submitAttempt = false;
       loader.present();
-      console.log(this.slideOneForm.controls["email"].value,this.slideOneForm.controls["password"].value);
       this.afAuth.auth.createUserWithEmailAndPassword(
         this.slideOneForm.controls["email"].value,
         this.slideOneForm.controls["email"].value
         ).then((response) => {
           if(response.additionalUserInfo.isNewUser) {
-            this.sheetService.saveUser(this.user,this.gSheetService.getToken(),'1VAtBwQY9RdK6TQE_XhBmOkJwNMiz1lf9CcVNdnecUjo').subscribe((response) => {
-              console.log(response);
+            this.sheetService.createUser(response.user.uid,this.gSheetService.getToken()).subscribe((data) => {
+              this.afDb.list(`/profile/${response.user.uid}`).push(
+                { UserId: response.user.uid, SheetId: data.spreadsheetId}
+                ).then( (response) => {
+                  this.sheetService.saveUser(this.user,this.gSheetService.getToken(), data.spreadsheetId).subscribe((response) => {
+                    loader.dismiss();
+                    this.navCtrl.push(Login, {message: 'User saved successfully. Please login now', status: 'Success'});
+                  }, (err) => {
+                    this.navCtrl.push(Login, {message: 'Failed to save the user information. Please try again.', status: 'Error'});
+                  });
+                });
               loader.dismiss();
-              this.navCtrl.push(Login);
             });
           }
           else {
             console.log('User name already exits');
             loader.dismiss();
-            this.navCtrl.push(Login);
+            this.navCtrl.push(Login, {message: 'User name already exits.Please try again', status: 'Success' });
           }
         }, (error) => {
-          console.log(error);
           loader.dismiss();
-          this.navCtrl.push(Login);
+          this.navCtrl.push(Login, {message: error.message, status: 'Failure'});
         });
     }
   }
+
   register(user, loader) {
     this.respUtility.trackEvent("User", "Register", "click");
     // this.tokenService.registerAccount(user).subscribe(

@@ -17,6 +17,9 @@
     <p class="text-color spacing-1" text-center>
       Wellness Simplified
     </p>
+    <div [ngClass]="status">
+      <p class="status-bar">{{message}}</p>
+    </div>
     <div class="seperator">
       <form class="padding-20" [formGroup]="slideOneForm">
         <ion-item class="transparent">

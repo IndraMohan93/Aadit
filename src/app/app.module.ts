@@ -21,6 +21,7 @@ import { LoginModule } from '../pages/login/login.module';
 import { IonicStorageModule } from '@ionic/storage';
 import { Angular2TokenService } from 'angular2-token';
 import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { GoogleApiModule, GoogleApiService, GoogleAuthService, NgGapiClientConfig, NG_GAPI_CONFIG, GoogleApiConfig } from "ng-gapi";
 // Import ionic2-rating module
@@ -149,6 +150,7 @@ import { gapiClientConfig } from './app.googleapi.config';
       provide: NG_GAPI_CONFIG,
       useValue: gapiClientConfig
     }),
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

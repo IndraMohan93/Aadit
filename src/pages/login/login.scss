@@ -19,7 +19,17 @@ page-login {
         
         
     }
-
+    .status-bar {
+        padding: 10px;
+        text-align: center;
+        color: white;
+    }
+    .Success {
+        background-color: greenyellow;
+    }
+    .Failure {
+        background-color: red;
+    }
     .extra-spacing {
         letter-spacing: 4pt;
         text-shadow: 3px 2px #7e8caf;
